@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.log
+
+# internal strategy notes, contain lead PII. never publish
+SESSION-LOG-*.md
