@@ -1,0 +1,32 @@
+:root{
+  --ink:        #16202B;  /* text, deep prussian near-black */
+  --paper:      #EDEAE1;  /* page background, cool bone */
+  --paper-2:    #E5E1D6;  /* raised panels */
+  --field:      #12202C;  /* the plot's dark field only */
+  --brass:      #A9772A;  /* the single accent, gold not clay */
+  --brass-lift: #D4A24A;  /* brass on the dark field */
+  --muted:      #6B6357;  /* secondary text */
+  --muted-lift: #9DA7AF;  /* secondary text on dark */
+  --line:       #D7D1C4;  /* hairlines */
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Newsreader",Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+#root{overflow-x:hidden}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.rule{border:0;border-top:1px solid var(--line);margin:0}
+
+a{color:inherit}
+button{font:inherit}
+
+:focus-visible{outline:2px solid var(--brass-lift);outline-offset:2px}
