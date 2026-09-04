@@ -4,7 +4,3 @@ Thumbs.db
 
 # internal strategy notes, contain lead PII. never publish
 SESSION-LOG-*.md
-
-# local drafts and packages, not published
-new/
-*.zip
