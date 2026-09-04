@@ -14,360 +14,542 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 /* ------------------------------------------------------------------
    Directed Analysis · landing page
-   Subscribe forms point at Substack; search "substack.com/subscribe".
+   Structure follows the tableau.com method: header with paired CTAs,
+   announcement bar, gradient hero with collage, featured card, centered
+   section headings over card rows, proof tiles, promo band, final CTA,
+   four-column footer with a dark legal strip.
+   All subscribe links point at Substack; search "substack.com/subscribe".
    ------------------------------------------------------------------ */
 :root{
-  --paper:#F3EEE4;
-  --paper-2:#EAE3D5;
-  --ink:#191611;
-  --ink-2:#4A443A;
-  --ink-3:#8A8274;
-  --rule:#D5CCBA;
-  --red:#A62B14;
-  --display:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --body:"Newsreader",Georgia,"Times New Roman",serif;
-  --mono:"Geist Mono","SFMono-Regular",Consolas,monospace;
+  --navy:#14213D;        /* headings */
+  --ink:#2B2F3A;         /* body */
+  --muted:#5D6473;       /* secondary text */
+  --line:#E3E6EC;
+  --bg:#FFFFFF;
+  --tint:#FFF6EE;        /* warm hero tint */
+  --tint-2:#FDEBDD;
+  --primary:#B93A1E;     /* filled buttons, links */
+  --primary-2:#96290F;
+  --accent:#F2B28C;      /* card top bars, pills */
+  --pill:#FBEFE6;
+  --shadow:0 2px 6px rgba(20,33,61,.06),0 12px 32px rgba(20,33,61,.08);
+  --r:16px;
   --wrap:1120px;
+  --head:"Figtree",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--body);font-size:19px;line-height:1.55;
-  font-optical-sizing:auto;
-  -webkit-font-smoothing:antialiased;
-}
-::selection{background:var(--red);color:var(--paper)}
-a{color:inherit}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--primary)}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;letter-spacing:-.015em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
 
-/* paper grain */
-.grain{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.5;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
+/* buttons + links */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--head);font-weight:600;font-size:16px;padding:.8rem 1.4rem;border-radius:8px;text-decoration:none;border:2px solid transparent;transition:background .15s,color .15s,border-color .15s;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-2)}
+.btn-outline{background:#fff;color:var(--primary);border-color:var(--primary)}
+.btn-outline:hover{background:var(--pill)}
+.btn-sm{font-size:15px;padding:.6rem 1.1rem}
+.tlink{font-family:var(--head);font-weight:600;font-size:16px;color:var(--navy);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.tlink:hover{color:var(--primary)}
+.pill{display:inline-block;font-family:var(--head);font-weight:600;font-size:13px;color:var(--navy);background:var(--pill);border-radius:999px;padding:.25rem .7rem}
 
-/* labels */
-.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-.label b{color:var(--red);font-weight:500}
+/* header */
+.site-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:2rem}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--head);font-weight:800;font-size:22px;color:var(--navy);letter-spacing:-.02em}
+.brand .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--primary),#E07A4A);position:relative;flex:none}
+.brand .mark::after{content:"";position:absolute;left:7px;top:7px;width:12px;height:12px;border-radius:3px;background:#fff;opacity:.9}
+.brand small{font-family:var(--body);font-weight:400;font-size:12px;color:var(--muted);display:block;letter-spacing:0;line-height:1;margin-top:2px}
+.site-header nav{display:flex;gap:1.6rem;align-items:center;flex:1}
+.site-header nav a{font-family:var(--head);font-weight:600;font-size:15px;color:var(--navy);text-decoration:none}
+.site-header nav a:hover{color:var(--primary)}
+.site-header .utils{display:flex;align-items:center;gap:.8rem}
+.site-header .utils .u{font-size:15px;color:var(--navy);text-decoration:underline;text-underline-offset:3px;margin-right:.6rem}
 
-/* ---------- masthead ---------- */
-.mast{border-bottom:1px solid var(--rule)}
-.mast .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{text-decoration:none;font-family:var(--display);font-size:24px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:.5rem}
-.brand .mark{width:10px;height:10px;background:var(--red);display:inline-block;transform:translateY(-1px)}
-.brand em{font-style:italic;color:var(--red)}
-.mast nav{display:flex;gap:1.6rem;align-items:center}
-.mast nav a{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-2)}
-.mast nav a:hover{color:var(--red)}
-.mast nav a.cta{border:1px solid var(--ink);padding:.55rem .9rem;color:var(--ink)}
-.mast nav a.cta:hover{background:var(--ink);color:var(--paper)}
+/* announcement */
+.announce{background:var(--navy);color:#fff;text-align:center;font-family:var(--head);font-weight:600;font-size:15px;padding:.7rem 1rem}
+.announce a{color:#fff;margin-left:.6rem}
 
-/* ---------- hero ---------- */
-.hero{padding:clamp(64px,10vw,140px) 0 clamp(48px,7vw,96px);position:relative;overflow:hidden}
-.hero .label{margin-bottom:2.2rem;display:flex;gap:1.2rem;align-items:center}
-.hero .label .rule{flex:0 0 48px;height:1px;background:var(--rule)}
-.hero h1{
-  font-family:var(--display);font-weight:400;letter-spacing:-.025em;
-  font-size:clamp(46px,8.4vw,124px);line-height:.98;margin:0 0 2.4rem;max-width:18ch;
-}
-.hero h1 .line{display:block;opacity:0;transform:translateY(18px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
-.hero h1 .line:nth-child(2){animation-delay:.18s}
-.hero h1 .was{position:relative;display:inline-block;color:var(--ink-3)}
-.hero h1 .was::after{content:"";position:absolute;left:-.02em;right:-.02em;top:54%;height:.06em;background:var(--red);transform:scaleX(0);transform-origin:left;animation:strike .7s .9s cubic-bezier(.7,0,.2,1) forwards}
-.hero h1 .now{font-style:italic;color:var(--red)}
-.hero .lede{
-  font-size:clamp(20px,2.1vw,25px);line-height:1.45;max-width:36ch;margin:0 0 2.6rem;
-  color:var(--ink-2);opacity:0;animation:rise .9s .45s cubic-bezier(.2,.7,.2,1) forwards;
-}
-@keyframes rise{to{opacity:1;transform:none}}
-@keyframes strike{to{transform:scaleX(1)}}
+/* hero */
+.hero{background:linear-gradient(180deg,var(--tint) 0%,#fff 100%);padding:clamp(48px,7vw,96px) 0 clamp(40px,6vw,80px);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.05;font-weight:800;margin-bottom:1.4rem}
+.hero h1 .accent{color:var(--primary)}
+.hero .sub{font-size:clamp(18px,1.6vw,22px);color:var(--ink);max-width:34ch;margin-bottom:2rem}
+.hero .ctas{display:flex;gap:.8rem;flex-wrap:wrap}
 
-/* subscribe form */
-.sub{display:flex;gap:0;max-width:520px;border:1px solid var(--ink);background:var(--paper);opacity:0;animation:rise .9s .6s cubic-bezier(.2,.7,.2,1) forwards}
-.sub input{flex:1;min-width:0;border:0;background:transparent;padding:1rem 1.1rem;font:inherit;font-size:17px;color:var(--ink);outline:none}
-.sub input::placeholder{color:var(--ink-3)}
-.sub button{border:0;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:0 1.4rem;cursor:pointer;transition:background .2s}
-.sub button:hover{background:var(--red)}
-.sub-note{margin:.9rem 0 0;font-size:15px;color:var(--ink-3)}
-.sub-note a{color:var(--ink-2)}
-.sr{position:absolute;left:-9999px}
+/* collage (stands in for the product screenshot) */
+.collage{position:relative;min-height:530px}
+.collage .blob{position:absolute;border-radius:50%;background:var(--tint-2);z-index:0}
+.collage .b1{width:280px;height:280px;right:0;top:20px}
+.collage .b2{width:150px;height:150px;left:20px;bottom:10px;background:#FBE3D2}
+.ccard{position:absolute;background:#fff;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--line);z-index:1}
+.ccard .h{font-family:var(--head);font-weight:700;font-size:13px;color:var(--navy);padding:.7rem .9rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.ccard .h .dot{width:8px;height:8px;border-radius:50%;background:var(--primary)}
+.ccard .b{padding:.8rem .9rem;font-size:13.5px;color:var(--ink)}
+.c-brief{left:0;top:215px;width:min(300px,55%)}
+.c-brief .row{display:flex;justify-content:space-between;gap:.8rem;padding:.35rem 0;border-bottom:1px dashed var(--line)}
+.c-brief .row:last-child{border:0}
+.c-brief .row s{color:var(--muted)}
+.c-brief .row b{font-family:var(--head);font-weight:700;color:var(--primary);font-size:12px;white-space:nowrap}
+.c-q{right:0;top:0;width:min(330px,62%);background:var(--navy);color:#fff;border:0}
+.c-q .b{color:#fff;font-family:var(--head);font-weight:600;font-size:15px;line-height:1.4;padding:1rem}
+.c-q .b small{display:block;font-family:var(--body);font-weight:400;color:#C9D0DE;font-size:12px;margin-bottom:.4rem}
+.c-a{right:0;bottom:0;width:min(240px,44%);z-index:2}
+.c-a .bars{display:grid;gap:6px;margin-top:.5rem}
+.c-a .bar{height:10px;border-radius:5px;background:#EEE2D8}
+.c-a .bar i{display:block;height:100%;border-radius:5px;background:var(--primary)}
+.c-a .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:.5rem}
+.spark{position:absolute;z-index:2;width:14px;height:14px;color:var(--primary)}
+.spark::before,.spark::after{content:"";position:absolute;background:currentColor;border-radius:2px}
+.spark::before{left:6px;top:0;width:2px;height:14px}
+.spark::after{top:6px;left:0;width:14px;height:2px}
 
-/* big ghost numeral in hero */
-.hero .ghost{position:absolute;right:-.05em;bottom:-.25em;font-family:var(--display);font-size:clamp(220px,34vw,520px);line-height:1;color:transparent;-webkit-text-stroke:1px var(--rule);pointer-events:none;user-select:none;font-style:italic}
+/* featured card */
+.section{padding:clamp(40px,6vw,80px) 0}
+.feature{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.feature h2{font-size:clamp(28px,3.2vw,40px);line-height:1.12;font-weight:700;margin:.8rem 0 1rem}
+.feature p{color:var(--ink);max-width:48ch;margin-bottom:1.6rem}
+.quote-card{background:var(--tint);border-radius:12px;padding:clamp(24px,3vw,40px);position:relative}
+.quote-card .big{font-family:var(--head);font-weight:800;font-size:clamp(28px,3vw,40px);color:var(--navy);line-height:1.1;margin-bottom:.9rem}
+.quote-card p{font-size:16px;color:var(--ink);margin:0}
+.quote-card .by{margin-top:1rem;font-size:13px;color:var(--muted);font-family:var(--head);font-weight:600}
 
-/* ---------- thesis ---------- */
-.thesis{border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);background:var(--paper-2)}
-.thesis .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);padding-top:clamp(56px,7vw,104px);padding-bottom:clamp(56px,7vw,104px)}
-.thesis h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:1.05;letter-spacing:-.02em;margin:.2rem 0 1.4rem}
-.thesis h2 em{color:var(--red)}
-.thesis p{margin:0 0 1.2rem;max-width:58ch}
-.thesis .moat{
-  margin-top:2.4rem;padding:1.6rem 0 0;border-top:1px solid var(--ink);
-  font-family:var(--display);font-style:italic;font-size:clamp(26px,3vw,38px);line-height:1.15;letter-spacing:-.01em;
-}
-.thesis .moat small{display:block;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-style:normal;margin-bottom:.8rem}
+/* section headings */
+.sec-head{text-align:center;max-width:720px;margin:0 auto clamp(28px,4vw,48px)}
+.sec-head h2{font-size:clamp(28px,3.4vw,42px);line-height:1.12;font-weight:700}
+.sec-head p{color:var(--ink);font-size:18px;margin-top:.9rem}
+.sec-head .tlink{display:inline-block;margin-top:1rem}
 
-/* ledger: where the hours went */
-.ledger{font-family:var(--mono);font-size:13px;letter-spacing:.02em}
-.ledger .col{border-top:1px solid var(--ink);padding:1.1rem 0 1.4rem}
-.ledger .col + .col{margin-top:.4rem}
-.ledger .head{display:flex;justify-content:space-between;margin-bottom:.9rem}
-.ledger .head span:first-child{color:var(--ink);font-weight:500;letter-spacing:.14em;text-transform:uppercase}
-.ledger .head span:last-child{color:var(--ink-3)}
-.ledger ul{list-style:none;margin:0;padding:0}
-.ledger li{display:flex;justify-content:space-between;gap:1rem;padding:.42rem 0;border-bottom:1px dashed var(--rule);color:var(--ink-2)}
-.ledger li:last-child{border-bottom:0}
-.ledger li s{color:var(--ink-3);text-decoration-color:var(--red)}
-.ledger li .tag{color:var(--ink-3);white-space:nowrap}
-.ledger li .tag.hot{color:var(--red)}
+/* card grids */
+.cards{display:grid;gap:1.4rem}
+.cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cards-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:1.6rem;display:flex;flex-direction:column;gap:.7rem;position:relative;overflow:hidden}
+.card.topbar::before{content:"";position:absolute;left:0;top:0;right:0;height:6px;background:var(--accent)}
+.card h3{font-size:20px;font-weight:700;line-height:1.25}
+.card p{font-size:16px;color:var(--ink);flex:1}
+.card .tlink{margin-top:.4rem;align-self:flex-start}
+.card .pill{align-self:flex-start}
 
-/* ---------- pillars ---------- */
-.pillars{padding:clamp(56px,7vw,104px) 0}
-.pillars .head{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:2.4rem;border-bottom:1px solid var(--ink);padding-bottom:1rem;flex-wrap:wrap}
-.pillars h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.2vw,56px);letter-spacing:-.02em;line-height:1;margin:0}
-.pillars ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,5vw,72px)}
-.pillars li{display:grid;grid-template-columns:3.2rem 1fr;gap:.6rem;padding:1.3rem 0;border-bottom:1px solid var(--rule);align-items:start}
-.pillars li .n{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;padding-top:.5rem}
-.pillars li p{margin:0;font-size:20px;line-height:1.35}
-.pillars li p em{font-style:italic;color:var(--ink-2)}
+/* latest: wide + three */
+.latest-wide{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:clamp(24px,3vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,4vw,48px);align-items:center;margin-bottom:1.4rem}
+.latest-wide h3{font-size:clamp(24px,2.6vw,32px);line-height:1.15;margin:.7rem 0 .7rem}
+.latest-wide p{margin-bottom:1.3rem}
+.ledger{background:linear-gradient(135deg,var(--tint),#fff);border-radius:12px;padding:1.2rem;border:1px solid var(--line);font-size:14px}
+.ledger .t{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.ledger .r{display:flex;justify-content:space-between;gap:.8rem;padding:.3rem 0;border-bottom:1px dashed var(--line)}
+.ledger .r:last-child{border:0}
+.ledger .r s{color:var(--muted)}
+.ledger .r b{font-family:var(--head);font-weight:700;color:var(--primary);font-size:12px;white-space:nowrap}
+.ledger .r em{font-style:normal;color:var(--muted);font-size:12px;white-space:nowrap}
+.ledger .gap{height:.8rem}
 
-/* ---------- issue 01 ---------- */
-.issue{border-top:1px solid var(--ink);padding:clamp(56px,7vw,104px) 0}
-.issue .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,6vw,96px)}
-.issue .meta .label{margin-bottom:1rem}
-.issue .meta h2{font-family:var(--display);font-weight:400;font-size:clamp(40px,5vw,68px);line-height:.98;letter-spacing:-.025em;margin:0 0 1.2rem}
-.issue .meta h2 em{color:var(--red)}
-.issue .meta p{color:var(--ink-2);font-size:17px;margin:0}
-.issue blockquote{margin:0;position:relative;padding-left:clamp(20px,3vw,40px);border-left:2px solid var(--red)}
-.issue blockquote p{margin:0 0 1.1rem;font-size:clamp(20px,2.2vw,26px);line-height:1.4}
-.issue blockquote p:first-child{font-family:var(--display);font-size:clamp(34px,4vw,52px);line-height:1.05;letter-spacing:-.02em;margin-bottom:1.4rem}
-.issue blockquote .more{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:1.6rem}
-.issue blockquote .more a{color:var(--red);text-decoration:none;border-bottom:1px solid currentColor}
+/* four columns with illustration tiles */
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.6rem}
+.col .tile{height:130px;border-radius:12px;background:var(--navy);margin-bottom:1rem;position:relative;overflow:hidden}
+.col .tile.t2{background:#1E3A5F}.col .tile.t3{background:#7A2412}.col .tile.t4{background:#2E4A3A}
+.col .tile i{position:absolute;background:#fff;opacity:.9;border-radius:6px}
+.col h3{font-size:18px;font-weight:700;line-height:1.3;margin-bottom:.5rem}
+.col p{font-size:15.5px;color:var(--ink);margin-bottom:.9rem}
 
-/* ---------- about ---------- */
-.about{background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,104px) 0}
-.about .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:start}
-.about .label{color:#9A917F}
-.about .label b{color:#FF7A5C}
-.about h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:1.02;letter-spacing:-.02em;margin:.4rem 0 1.4rem}
-.about h2 em{color:#FF7A5C}
-.about p{color:#D9D1C0;margin:0 0 1.1rem;max-width:60ch}
-.about .facts{border-top:1px solid #3A352C;margin-top:.4rem}
-.about .facts div{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:1px solid #3A352C}
-.about .facts .k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A917F;padding-top:.35rem}
-.about .facts .v{font-family:var(--display);font-size:clamp(22px,2.4vw,30px);line-height:1.1;text-align:right;max-width:20ch}
-.about .facts .v em{color:#FF7A5C}
-.about .links{margin-top:1.6rem;display:flex;gap:1.4rem;flex-wrap:wrap}
-.about .links a{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);text-decoration:none;border-bottom:1px solid #5A5448;padding-bottom:.2rem}
-.about .links a:hover{border-color:#FF7A5C;color:#FF7A5C}
+/* split media row */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.split h2{font-size:clamp(28px,3.2vw,40px);line-height:1.12;font-weight:700;margin-bottom:1rem}
+.split p{margin-bottom:1rem}
+.split .media{background:var(--navy);border-radius:var(--r);padding:clamp(24px,3vw,40px);color:#fff}
+.split .media .q{font-family:var(--head);font-weight:800;font-size:clamp(26px,2.8vw,36px);line-height:1.12}
+.split .media .a{margin-top:1.2rem;color:#C9D0DE;font-size:16px}
+.split .media .tag{display:inline-block;font-family:var(--head);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#F2B28C;margin-bottom:1rem}
 
-/* ---------- closing subscribe ---------- */
-.close{padding:clamp(72px,9vw,128px) 0;text-align:center}
-.close h2{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.6vw,80px);line-height:1;letter-spacing:-.025em;margin:0 auto 1.2rem;max-width:16ch}
-.close h2 em{color:var(--red)}
-.close p{color:var(--ink-2);max-width:44ch;margin:0 auto 2rem}
-.close .sub{margin:0 auto;opacity:1;animation:none}
-.close .sub-note{text-align:center}
+/* proof tiles */
+.proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.6rem}
+.proof .img{height:180px;border-radius:12px;margin-bottom:1rem;display:flex;align-items:flex-end;padding:1rem;font-family:var(--head);font-weight:800;color:#fff;font-size:clamp(28px,3vw,40px);line-height:1;letter-spacing:-.02em}
+.proof .p1{background:linear-gradient(160deg,#B93A1E,#E07A4A)}
+.proof .p2{background:linear-gradient(160deg,#14213D,#2F4A7A)}
+.proof .p3{background:linear-gradient(160deg,#2E4A3A,#5E8A6C)}
+.proof .p4{background:linear-gradient(160deg,#7A2412,#B93A1E)}
+.proof h3{font-size:17px;font-weight:700;line-height:1.3;margin-bottom:.8rem}
 
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--rule);padding:1.6rem 0 2.4rem}
-footer .wrap{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
-footer a{text-decoration:none;color:var(--ink-2)}
-footer a:hover{color:var(--red)}
-footer .l{display:flex;gap:1.4rem;flex-wrap:wrap}
+/* promo band */
+.band{background:linear-gradient(135deg,var(--tint-2),var(--tint) 55%,#fff);border-radius:var(--r);padding:clamp(40px,6vw,72px) clamp(24px,4vw,48px);text-align:center;position:relative;overflow:hidden;border:1px solid var(--line)}
+.band h2{font-size:clamp(28px,3.4vw,42px);line-height:1.12;font-weight:700;max-width:22ch;margin:0 auto 1rem}
+.band p{max-width:52ch;margin:0 auto 1.8rem}
+.band .blocks{position:absolute;bottom:0;display:flex;gap:10px;align-items:flex-end}
+.band .blocks.l{left:36px}.band .blocks.r{right:36px}
+.band .blocks i{display:block;width:34px;border-radius:8px 8px 0 0;background:var(--accent)}
+.band .blocks i:nth-child(2){background:var(--primary)}
+.band .blocks i:nth-child(3){background:#E07A4A}
 
-/* scroll reveal */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+/* final cta */
+.final{text-align:center;padding:clamp(48px,7vw,96px) 0}
+.final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.1;font-weight:800;max-width:20ch;margin:0 auto 1.8rem}
+.final .ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:#fff}
+.foot-main{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:2rem;padding:clamp(40px,5vw,64px) 0}
+.foot-main h4{font-family:var(--head);font-weight:700;font-size:16px;color:var(--navy);margin:0 0 .9rem}
+.foot-main ul{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.foot-main ul a{color:var(--ink);text-decoration:none;font-size:15.5px}
+.foot-main ul a:hover{color:var(--primary);text-decoration:underline}
+.foot-main .brand{margin-bottom:1.2rem}
+.foot-legal{background:#111827;color:#C9D0DE;font-size:13.5px}
+.foot-legal .wrap{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding-top:1.2rem;padding-bottom:1.2rem;align-items:center}
+.foot-legal a{color:#fff;font-family:var(--head);font-weight:600;text-decoration:underline;text-underline-offset:3px;margin-right:1.2rem;font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  .hero h1 .line,.hero .lede,.sub{opacity:1;transform:none;animation:none}
-  .hero h1 .was::after{transform:scaleX(1);animation:none}
-}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-/* ---------- responsive ---------- */
-@media (max-width:860px){
-  body{font-size:18px}
-  .mast nav a.hide-sm{display:none}
-  .thesis .wrap,.issue .wrap,.about .wrap{grid-template-columns:1fr}
-  .pillars ol{grid-template-columns:1fr}
-  .hero .ghost{display:none}
-  .about .facts .v{text-align:left;max-width:none}
-  .about .facts div{flex-direction:column;gap:.3rem}
+/* responsive */
+@media (max-width:1000px){
+  .cards-4,.cols,.proof{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-main{grid-template-columns:1fr 1fr}
+  .foot-main > div:first-child{grid-column:1 / -1}
 }
-@media (max-width:520px){
-  .sub{flex-direction:column}
-  .sub button{padding:.95rem}
+@media (max-width:820px){
+  .site-header nav{display:none}
+  .site-header .utils .u{display:none}
+  .hero .wrap,.feature,.latest-wide,.split{grid-template-columns:1fr}
+  .collage{min-height:0;display:grid;gap:1rem}
+  .collage .blob,.collage .spark{display:none}
+  .ccard,.c-q,.c-brief,.c-a{position:static;width:100%}
+  .cards-3{grid-template-columns:1fr}
+  .brand{font-size:19px}
+  .brand > span{white-space:nowrap}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .cards-4,.cols,.proof{grid-template-columns:1fr}
+  .band .blocks{display:none}
+  .site-header .utils .btn-outline{display:none}
+  .foot-main{grid-template-columns:1fr}
 }
 </style>
 </head>
-<body>
-<div class="grain" aria-hidden="true"></div>
+<body id="top">
 
-<header class="mast">
+<!-- ============ HEADER ============ -->
+<header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="Directed Analysis home"><span class="mark" aria-hidden="true"></span>Directed <em>Analysis</em></a>
+    <a class="brand" href="/" aria-label="Directed Analysis home"><span class="mark" aria-hidden="true"></span><span>Directed Analysis<small>from Eric Summers</small></span></a>
     <nav aria-label="Primary">
-      <a href="#thesis" class="hide-sm">The thesis</a>
-      <a href="#issue" class="hide-sm">Issue 01</a>
-      <a href="#about" class="hide-sm">About</a>
-      <a href="https://directedanalysis.substack.com/subscribe" class="cta" target="_blank" rel="noopener">Subscribe</a>
+      <a href="#thesis">The thesis</a>
+      <a href="#latest">Essays</a>
+      <a href="#method">The method</a>
+      <a href="#about">About</a>
     </nav>
+    <div class="utils">
+      <a class="u" href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Read on Substack</a>
+      <a class="btn btn-outline btn-sm" href="#issue">Read Issue 01</a>
+      <a class="btn btn-primary btn-sm" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe free</a>
+    </div>
   </div>
 </header>
 
+<div class="announce">Issue 01, The Valuable Part, is on its way. <a href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Get it first, free.</a></div>
+
 <!-- ============ HERO ============ -->
-<section class="hero" id="top">
+<section class="hero">
   <div class="wrap">
-    <p class="label"><span>A publication for the working analyst</span><span class="rule"></span><span><b>Issue 01 forthcoming</b></span></p>
-    <h1>
-      <span class="line">We used to direct <span class="was">the tools.</span></span>
-      <span class="line">Now we direct <span class="now">the analysis.</span></span>
-    </h1>
-    <p class="lede">For analysts working through the AI shift. Building the chart got easy. The analysis is where the value went. Tool-agnostic notes on how to think through a project, direct the work, and spend your time on the part that actually matters.</p>
-
-    <form class="sub" id="subscribe" action="https://directedanalysis.substack.com/subscribe" method="get" target="_blank">
-      <label for="email" class="sr">Email address</label>
-      <input id="email" type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-      <button type="submit">Subscribe, free</button>
-    </form>
-    <p class="sub-note">One essay a week, no tool tutorials, no pitch. Unsubscribe any time.</p>
-  </div>
-  <div class="ghost" aria-hidden="true">01</div>
-</section>
-
-<!-- ============ THESIS ============ -->
-<section class="thesis" id="thesis">
-  <div class="wrap">
-    <div class="reveal">
-      <p class="label">The thesis</p>
-      <h2>Viz is the easy part. <em>The analysis is the valuable part.</em></h2>
-      <p>For twenty years an analyst's hours went to the mechanics. Cleaning, joining, reshaping, building, rebuilding. That was the job, because that was the hard part.</p>
-      <p>AI collapsed the assembly. Building the chart is now nearly free. The value did not vanish. It moved back to the part we always rushed past: framing the real question, deciding what is worth measuring, reading what the data actually says.</p>
-      <p>The thing you spend your time on is the thing that is actually valuable. So the question for every analyst is where the hours go now.</p>
-      <div class="moat">
-        <small>The moat</small>
-        You can't direct what you don't understand.
+    <div>
+      <h1>We used to direct the tools. <span class="accent">Now we direct the analysis.</span></h1>
+      <p class="sub">For analysts working through the AI shift. Building the chart got easy. The analysis is where the value went. Tool-agnostic notes on how to think through a project, direct the work, and spend your time on the part that actually matters.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe, free</a>
+        <a class="btn btn-outline" href="#thesis">Read the thesis</a>
       </div>
     </div>
-
-    <div class="ledger reveal" aria-label="Where an analyst's hours go, then and now">
-      <div class="col">
-        <div class="head"><span>Then</span><span>where the hours went</span></div>
-        <ul>
-          <li><span>Cleaning and joining the data</span><span class="tag">most of the week</span></li>
-          <li><span>Reshaping it until the tool was happy</span><span class="tag">a day</span></li>
-          <li><span>Building the chart</span><span class="tag">a day</span></li>
-          <li><span>Rebuilding it after the meeting</span><span class="tag">another day</span></li>
-          <li><span>Framing the real question</span><span class="tag">whatever was left</span></li>
-          <li><span>Deciding what is worth measuring</span><span class="tag">rushed</span></li>
-          <li><span>Reading what the data actually says</span><span class="tag">rushed</span></li>
-        </ul>
+    <div class="collage" aria-hidden="true">
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <span class="spark" style="left:10%;top:60px"></span>
+      <span class="spark" style="right:47%;bottom:30px"></span>
+      <div class="ccard c-q">
+        <div class="b"><small>The question you were handed</small>"Can you build a dashboard for regional sales?"<br><br><small>The real question</small>"Which region is quietly losing margin, and why?"</div>
       </div>
-      <div class="col">
-        <div class="head"><span>Now</span><span>where the value went</span></div>
-        <ul>
-          <li><span><s>Cleaning and joining the data</s></span><span class="tag">directed</span></li>
-          <li><span><s>Reshaping it until the tool was happy</s></span><span class="tag">directed</span></li>
-          <li><span><s>Building the chart</s></span><span class="tag">nearly free</span></li>
-          <li><span><s>Rebuilding it after the meeting</s></span><span class="tag">minutes</span></li>
-          <li><span>Framing the real question</span><span class="tag hot">the job</span></li>
-          <li><span>Deciding what is worth measuring</span><span class="tag hot">the job</span></li>
-          <li><span>Reading what the data actually says</span><span class="tag hot">the job</span></li>
-        </ul>
+      <div class="ccard c-brief">
+        <div class="h">Where the hours go <span class="dot"></span></div>
+        <div class="b">
+          <div class="row"><s>Cleaning and joining</s><b>DIRECTED</b></div>
+          <div class="row"><s>Building the chart</s><b>NEARLY FREE</b></div>
+          <div class="row"><s>Rebuilding after the meeting</s><b>MINUTES</b></div>
+          <div class="row"><span>Framing the real question</span><b>THE JOB</b></div>
+          <div class="row"><span>Reading what the data says</span><b>THE JOB</b></div>
+        </div>
+      </div>
+      <div class="ccard c-a">
+        <div class="h">Margin by region, trailing 12 months</div>
+        <div class="b">
+          <div class="bars">
+            <div class="bar"><i style="width:82%"></i></div>
+            <div class="bar"><i style="width:64%"></i></div>
+            <div class="bar"><i style="width:31%;background:#E07A4A"></i></div>
+            <div class="bar"><i style="width:58%"></i></div>
+          </div>
+          <div class="lbl"><span>West is down 19 points</span><span>flagged</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PILLARS ============ -->
-<section class="pillars" id="pillars">
+<!-- ============ FEATURED: ISSUE 01 ============ -->
+<section class="section" id="issue">
   <div class="wrap">
-    <div class="head reveal">
-      <h2>What you'll read here</h2>
-      <p class="label">Tool-agnostic · plain-spoken · reasoning left in</p>
-    </div>
-    <ol>
-      <li class="reveal"><span class="n">01</span><p>How I think through a project <em>before touching anything.</em></p></li>
-      <li class="reveal"><span class="n">02</span><p>Deciding what is worth building, <em>and what to throw out.</em></p></li>
-      <li class="reveal"><span class="n">03</span><p>Working with the client to answer <em>the real question,</em> not the one you were handed.</p></li>
-      <li class="reveal"><span class="n">04</span><p>How I direct a build, <em>and how I catch the AI when it is confidently wrong.</em></p></li>
-      <li class="reveal"><span class="n">05</span><p>What to pay for <em>and what to refuse.</em></p></li>
-      <li class="reveal"><span class="n">06</span><p>Where the time should go <em>now that assembly is cheap.</em></p></li>
-      <li class="reveal"><span class="n">07</span><p>Worked examples <em>with the reasoning left in.</em></p></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ ISSUE 01 ============ -->
-<section class="issue" id="issue">
-  <div class="wrap">
-    <div class="meta reveal">
-      <p class="label"><b>Issue 01</b> · the inaugural essay</p>
-      <h2>The Valuable <em>Part</em></h2>
-      <p>The essay the whole publication grows out of. It opens on a confession, reframes the old job as assembly mistaken for analysis, names the automation fear honestly, and then turns it.</p>
-    </div>
-    <blockquote class="reveal">
-      <p>I am not a coder.</p>
-      <p>Think about where your hours actually went. Not where the job description said they went. Where they went. For most of us it was the assembly: the joins, the reshaping, the chart that had to be rebuilt after every meeting. We called that analysis because it was hard and it was ours.</p>
-      <p>The machine came for the assembly. It did not come for the thinking. It raised the stakes on the thinking and removed the hiding place.</p>
-      <p class="more">Publishes as Issue 01 · <a href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">subscribe to get it first</a></p>
-    </blockquote>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="reveal">
-      <p class="label">Who is writing this</p>
-      <h2>Eric Summers. Analyst first, <em>builder second.</em></h2>
-      <p>I started in Excel, making homely line graphs that make me cringe now. Fifteen-plus years and thousands of dashboards later, I still think the cringe is the credibility. I have made most of the expensive mistakes already.</p>
-      <p>I build in public every day at TableauOps and ship data stories at ericsummers.io. Directed Analysis is where I write about the other half of the work: the thinking the tools cannot do for you, in whatever tool you happen to use.</p>
-      <p>Directed Analysis is a Directed Building property. It is not tied to any product, and it never will be.</p>
-      <div class="links">
-        <a href="https://ericsummers.io" target="_blank" rel="noopener">ericsummers.io</a>
-        <a href="https://www.linkedin.com/in/ericsummers/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://tableauops.com" target="_blank" rel="noopener">TableauOps</a>
+    <div class="feature reveal">
+      <div>
+        <span class="pill">Issue 01 · the inaugural essay</span>
+        <h2>The Valuable Part</h2>
+        <p>The essay the whole publication grows out of. It opens on a confession, reframes the old job as assembly mistaken for analysis, names the automation fear honestly, and then turns it. Tool-agnostic, plain-spoken, no pitch.</p>
+        <a class="btn btn-primary" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Get Issue 01 when it lands</a>
+      </div>
+      <div class="quote-card">
+        <div class="big">"I am not a coder."</div>
+        <p>The machine came for the assembly. It did not come for the thinking. It raised the stakes on the thinking and removed the hiding place.</p>
+        <div class="by">From The Valuable Part</div>
       </div>
     </div>
-    <div class="facts reveal" aria-label="Facts">
-      <div><span class="k">Years analyzing</span><span class="v">Fifteen and counting</span></div>
-      <div><span class="k">Dashboards</span><span class="v">Thousands, built or improved</span></div>
-      <div><span class="k">First tool</span><span class="v">Excel, <em>regrettable line graphs</em></span></div>
-      <div><span class="k">Current tools</span><span class="v">Whatever the question needs</span></div>
-      <div><span class="k">Reader</span><span class="v">The working analyst, <em>moving up instead of out</em></span></div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S HERE (3 cards) ============ -->
+<section class="section" id="thesis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Viz is the easy part. The analysis is the valuable part.</h2>
+      <p>For twenty years an analyst's hours went to the mechanics. AI collapsed the assembly. The value did not vanish. It moved back to the part we always rushed past.</p>
+    </div>
+    <div class="cards cards-3">
+      <div class="card topbar reveal">
+        <h3>The publication</h3>
+        <p>Free weekly essays on how to think through a project before touching anything, decide what is worth building, and read what the data actually says. Written for the working analyst, not the beginner.</p>
+        <a class="tlink" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe free</a>
+      </div>
+      <div class="card topbar reveal">
+        <h3>The method</h3>
+        <p>How I turn a vague question into a solved problem, packaged. Finding the real question, directing the AI, catching it when it is confidently wrong, handing back something the business can trust.</p>
+        <a class="tlink" href="#method">See the positioning</a>
+      </div>
+      <div class="card topbar reveal">
+        <h3>The guide</h3>
+        <p>Fifteen-plus years of analysis, thousands of dashboards, and an origin in Excel line graphs that still make me cringe. I made the expensive mistakes so you can skip them.</p>
+        <a class="tlink" href="#about">About Eric</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CLOSE ============ -->
-<section class="close">
+<!-- ============ LATEST (wide + 3) ============ -->
+<section class="section" id="latest">
   <div class="wrap">
-    <p class="label">Free publication</p>
-    <h2>AI isn't coming for the analyst <em>who can think.</em></h2>
-    <p>Here is how to be that analyst. One essay a week, starting with The Valuable Part.</p>
-    <form class="sub" action="https://directedanalysis.substack.com/subscribe" method="get" target="_blank">
-      <label for="email2" class="sr">Email address</label>
-      <input id="email2" type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-      <button type="submit">Subscribe, free</button>
-    </form>
-    <p class="sub-note">No tool tutorials. No pitch. Unsubscribe any time.</p>
+    <div class="sec-head reveal"><h2>What's coming next</h2></div>
+    <div class="latest-wide reveal">
+      <div class="ledger" aria-label="Where an analyst's hours went, then and now">
+        <div class="t">Then · where the hours went</div>
+        <div class="r"><span>Cleaning and joining the data</span><em>most of the week</em></div>
+        <div class="r"><span>Building, then rebuilding, the chart</span><em>two days</em></div>
+        <div class="r"><span>Framing the real question</span><em>whatever was left</em></div>
+        <div class="gap"></div>
+        <div class="t">Now · where the value went</div>
+        <div class="r"><s>Cleaning and joining the data</s><b>DIRECTED</b></div>
+        <div class="r"><s>Building, then rebuilding, the chart</s><b>MINUTES</b></div>
+        <div class="r"><span>Framing the real question</span><b>THE JOB</b></div>
+      </div>
+      <div>
+        <span class="pill">Essay 02</span>
+        <h3>Where the time should go now that assembly is cheap</h3>
+        <p>The thing you spend your time on is the thing that is actually valuable. A worked look at an ordinary analyst week, before and after the shift, and what to do with the hours you got back.</p>
+        <a class="btn btn-outline" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Get it in your inbox</a>
+      </div>
+    </div>
+    <div class="cards cards-3">
+      <div class="card reveal">
+        <span class="pill">Essay 03</span>
+        <h3>How I think through a project before touching anything</h3>
+        <a class="tlink" href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Follow along</a>
+      </div>
+      <div class="card reveal">
+        <span class="pill">Essay 04</span>
+        <h3>What to pay for and what to refuse</h3>
+        <a class="tlink" href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Follow along</a>
+      </div>
+      <div class="card reveal">
+        <span class="pill">Worked example</span>
+        <h3>A real project with the reasoning left in</h3>
+        <a class="tlink" href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Follow along</a>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ============ FOUR PILLARS ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Building the chart got easy. Here is where the work went.</h2>
+      <p>Four things the tools cannot do for you, in whatever tool you happen to use. Every essay here serves one of them.</p>
+    </div>
+    <div class="cols">
+      <div class="col reveal">
+        <div class="tile"><i style="left:18px;top:22px;width:90px;height:10px"></i><i style="left:18px;top:42px;width:60px;height:10px;opacity:.5"></i><i style="left:18px;top:78px;width:120px;height:10px;background:#F2B28C"></i></div>
+        <h3>Frame the real question</h3>
+        <p>The question you were handed is rarely the one worth answering. Finding the real one is most of the job now.</p>
+        <a class="tlink" href="#thesis">How I find it</a>
+      </div>
+      <div class="col reveal">
+        <div class="tile t2"><i style="left:18px;top:20px;width:34px;height:34px"></i><i style="left:62px;top:20px;width:34px;height:34px;opacity:.4"></i><i style="left:106px;top:20px;width:34px;height:34px;opacity:.4"></i><i style="left:18px;top:64px;width:34px;height:34px;opacity:.4"></i><i style="left:62px;top:64px;width:34px;height:34px"></i></div>
+        <h3>Decide what is worth building</h3>
+        <p>Cheap assembly means everything can be built. That is the trap. Choosing what to throw out is where judgment shows.</p>
+        <a class="tlink" href="#thesis">How I choose</a>
+      </div>
+      <div class="col reveal">
+        <div class="tile t3"><i style="left:18px;top:24px;width:130px;height:8px;opacity:.5"></i><i style="left:18px;top:44px;width:100px;height:8px;opacity:.5"></i><i style="left:18px;top:64px;width:140px;height:8px;opacity:.5"></i><i style="left:18px;top:90px;width:70px;height:20px;border-radius:10px;background:#F2B28C"></i></div>
+        <h3>Direct the build</h3>
+        <p>Tell the AI what to make, then catch it when it is confidently wrong. You cannot direct what you do not understand.</p>
+        <a class="tlink" href="#method">How I direct</a>
+      </div>
+      <div class="col reveal">
+        <div class="tile t4"><i style="left:18px;top:70px;width:22px;height:40px"></i><i style="left:48px;top:50px;width:22px;height:60px;opacity:.6"></i><i style="left:78px;top:30px;width:22px;height:80px"></i><i style="left:108px;top:56px;width:22px;height:54px;opacity:.6;background:#F2B28C"></i></div>
+        <h3>Hand back something trusted</h3>
+        <p>Say what the data knows and what it does not. The honesty around the chart is the craft the business pays for.</p>
+        <a class="tlink" href="#thesis">Why it matters</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPLIT: THE MOAT ============ -->
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="split">
+      <div class="media reveal">
+        <span class="tag">The moat</span>
+        <div class="q">You can't direct what you don't understand.</div>
+        <p class="a">AI did not remove the need to know analysis. It raised the stakes and removed the hiding place. The analyst who can think is the one AI makes more valuable, not less.</p>
+      </div>
+      <div class="reveal">
+        <span class="pill">The method · in development</span>
+        <h2 style="margin-top:.8rem">This is how I turn a vague question into a solved problem.</h2>
+        <p>It is not a course about a tool. Tools change. This is how I think. How I find the real question under the one I was handed. How I decide what is worth building and what to throw out. How I direct the AI to do the work, and how I catch it when it is confidently wrong.</p>
+        <p>It is for the working analyst in the AI era. Not the beginner trying to break in. You are already in, and you have decided to move up instead of out.</p>
+        <p style="margin-bottom:1.6rem">I am building it in the open with a small founding cohort. Subscribers hear first.</p>
+        <a class="btn btn-outline" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Hear when the cohort opens</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF TILES ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Who is writing this</h2>
+      <p>Eric Summers. Analyst first, builder second. Directed Analysis is a Directed Building property, tied to no product, and it never will be.</p>
+      <a class="tlink" href="https://ericsummers.io" target="_blank" rel="noopener">See the data stories at ericsummers.io</a>
+    </div>
+    <div class="proof">
+      <div class="reveal">
+        <div class="img p1">15+</div>
+        <h3>Years analyzing data for people who had to act on it</h3>
+        <a class="tlink" href="https://www.linkedin.com/in/ericsummers/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="reveal">
+        <div class="img p2">1,000s</div>
+        <h3>Dashboards built or improved, across industries and tools</h3>
+        <a class="tlink" href="https://ericsummers.io" target="_blank" rel="noopener">Selected work</a>
+      </div>
+      <div class="reveal">
+        <div class="img p3">Excel</div>
+        <h3>Where it started, with homely line graphs that make me cringe now</h3>
+        <a class="tlink" href="#issue">The confession</a>
+      </div>
+      <div class="reveal">
+        <div class="img p4">Daily</div>
+        <h3>Building in public at TableauOps, so the method gets tested every day</h3>
+        <a class="tlink" href="https://tableauops.com" target="_blank" rel="noopener">TableauOps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMO BAND ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="blocks l" aria-hidden="true"><i style="height:40px"></i><i style="height:70px"></i><i style="height:26px"></i></div>
+      <div class="blocks r" aria-hidden="true"><i style="height:26px"></i><i style="height:60px"></i><i style="height:44px"></i></div>
+      <h2>Move up the value chain instead of out of the job</h2>
+      <p>One essay a week on the thinking the tools cannot do for you. No tool tutorials, no pitch, unsubscribe any time.</p>
+      <a class="btn btn-primary" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe, free</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final">
+  <div class="wrap">
+    <h2>AI isn't coming for the analyst who can think.</h2>
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe, free</a>
+      <a class="btn btn-outline" href="#issue">Read about Issue 01</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wrap">
-    <span>© <span id="yr">2026</span> Eric Summers · Directed Analysis</span>
-    <span class="l">
-      <a href="#top">Top</a>
-      <a href="https://ericsummers.io" target="_blank" rel="noopener">ericsummers.io</a>
-      <a href="https://www.linkedin.com/in/ericsummers/" target="_blank" rel="noopener">LinkedIn</a>
-    </span>
+  <div class="wrap foot-main">
+    <div>
+      <a class="brand" href="/"><span class="mark" aria-hidden="true"></span><span>Directed Analysis<small>from Eric Summers</small></span></a>
+      <a class="btn btn-primary btn-sm" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe free</a>
+    </div>
+    <div>
+      <h4>Read</h4>
+      <ul>
+        <li><a href="#thesis">The thesis</a></li>
+        <li><a href="#issue">Issue 01: The Valuable Part</a></li>
+        <li><a href="#latest">Upcoming essays</a></li>
+        <li><a href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Archive on Substack</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>The method</h4>
+      <ul>
+        <li><a href="#method">Positioning</a></li>
+        <li><a href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Founding cohort</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Eric Summers</h4>
+      <ul>
+        <li><a href="https://ericsummers.io" target="_blank" rel="noopener">ericsummers.io</a></li>
+        <li><a href="https://www.linkedin.com/in/ericsummers/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://tableauops.com" target="_blank" rel="noopener">TableauOps</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Directed Building</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Contact via Substack</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-legal">
+    <div class="wrap">
+      <div><a href="#top">Top</a><a href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://ericsummers.io" target="_blank" rel="noopener">ericsummers.io</a></div>
+      <div>© <span id="yr">2026</span> Eric Summers · Directed Analysis · A Directed Building property</div>
+    </div>
   </div>
 </footer>
 
@@ -377,8 +559,8 @@ var els=document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
-  els.forEach(function(el,i){el.style.transitionDelay=(i%4)*70+'ms';io.observe(el);});
+  },{rootMargin:'0px 0px -6% 0px',threshold:.06});
+  els.forEach(function(el,i){el.style.transitionDelay=(i%4)*60+'ms';io.observe(el);});
 }else{els.forEach(function(el){el.classList.add('in');});}
 </script>
 </body>
