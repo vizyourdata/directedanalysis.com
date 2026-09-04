@@ -1,6 +1,6 @@
 # directedanalysis.com
 
-Landing page for **Directing Analysis**, the free publication for the working analyst in the AI era.
+Landing page for **Directed Analysis**, the free publication for the working analyst in the AI era.
 Tagline: *We used to direct the tools. Now we direct the analysis.*
 
 Static site, no build step. Hosted on GitHub Pages with a custom domain (same pattern as ericsummers.io).
@@ -16,7 +16,7 @@ assets/img/favicon.svg
 ## Editing
 
 - **Subscribe form target:** both `<form class="sub">` elements point at
-  `https://directinganalysis.substack.com/subscribe` and pass the email as `?email=`.
+  `https://directedanalysis.substack.com/subscribe` and pass the email as `?email=`.
   The nav button and the Issue 01 link go there too (search for `substack.com/subscribe`).
 - **Copy:** everything is in `index.html`. Sections in order: hero, thesis + ledger, pillars, issue 01, about, closing subscribe.
 
@@ -39,4 +39,3 @@ Then in the repo: Settings → Pages → confirm custom domain `directedanalysis
 ## Not yet done
 
 - No OG image (social previews fall back to text). Add `assets/img/og.png` at 1200×630 and set `og:image`.
-- The session log named `directinganalysis.com` as the intended domain; this repo is on `directedanalysis.com`. Reconcile and 301 whichever is secondary.
