@@ -17,7 +17,7 @@ assets/img/favicon.svg
 
 - **Subscribe form target:** both `<form class="sub">` elements point at
   `https://directinganalysis.substack.com/subscribe` and pass the email as `?email=`.
-  Change that URL once the Substack subdomain is final (search for `substack.com/subscribe`).
+  The nav button and the Issue 01 link go there too (search for `substack.com/subscribe`).
 - **Copy:** everything is in `index.html`. Sections in order: hero, thesis + ledger, pillars, issue 01, about, closing subscribe.
 
 ## Deploy
