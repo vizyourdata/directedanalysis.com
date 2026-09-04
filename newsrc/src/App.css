@@ -37,12 +37,15 @@ h1 .two{color:var(--brass)}
 /* ---- the plot ---- */
 .plot-shell{background:var(--field);border-radius:4px;margin:44px 0 8px;padding:34px 34px 30px;color:#E8E4DA;position:relative;overflow:hidden}
 .plot-eyebrow{font-family:"Archivo",sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;color:var(--muted-lift);margin:0 0 4px}
-.plot-caption{font-family:"Newsreader",serif;font-size:clamp(20px,2.6vw,26px);line-height:1.25;margin:0 0 26px;max-width:34ch;min-height:2.5em;transition:opacity .3s ease}
+.plot-caption{font-family:"Newsreader",serif;font-size:clamp(20px,2.6vw,26px);line-height:1.25;margin:0;max-width:34ch;min-height:2.5em;transition:opacity .3s ease}
 .plot-caption b{color:var(--brass-lift);font-weight:500}
 
 .bar{position:relative;height:74px;border-radius:3px;overflow:hidden;display:flex;background:#0c1720}
 .seg{height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:width 1.15s cubic-bezier(.72,0,.16,1),background-color .6s ease;white-space:nowrap}
 .seg-label{font-family:"Archivo",sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.02em;padding:0 10px;transition:opacity .4s ease}
+/* hide a label whenever its segment is too narrow to hold it (any viewport) */
+.seg{container-type:inline-size}
+@container (max-width:78px){.seg-label{opacity:0 !important}}
 .seg.think{background:var(--brass);color:#1b1205}
 .seg.assemble{background:#243441;color:#8b98a2}
 
@@ -50,7 +53,10 @@ h1 .two{color:var(--brass)}
 .tick{position:absolute;top:0;transform:translateX(-50%);font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.04em;color:#5f6f7a}
 .tick::before{content:"";position:absolute;top:-9px;left:50%;width:1px;height:6px;background:#33434e}
 
-.needle-wrap{position:absolute;left:0;right:0;top:34px;bottom:56px;pointer-events:none}
+/* stage = bar + needle; the padding-top reserves room for the VALUE cap so
+   the needle is measured from the bar, never from the caption above it */
+.bar-stage{position:relative;padding-top:30px}
+.needle-wrap{position:absolute;left:0;right:0;top:30px;bottom:-34px;pointer-events:none}
 .needle{position:absolute;top:0;bottom:0;width:2px;background:var(--brass-lift);transition:left 1.15s cubic-bezier(.72,0,.16,1);box-shadow:0 0 0 3px rgba(212,162,74,.18)}
 .needle .cap{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-family:"Archivo",sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.1em;color:var(--brass-lift);white-space:nowrap;background:var(--field);padding:0 6px}
 

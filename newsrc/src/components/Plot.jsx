@@ -43,30 +43,34 @@ export default function Plot() {
         dangerouslySetInnerHTML={{ __html: s.caption }}
       />
 
-      <div
-        className="bar"
-        role="img"
-        aria-label="A bar showing how the analyst's week splits between assembly and thinking, in the old world versus now."
-      >
-        {s.segments.map((seg, i) => (
-          <div
-            key={i}
-            className={`seg ${seg.kind}`}
-            style={{ width: `${seg.pct}%` }}
-          >
-            <span
-              className="seg-label"
-              style={{ opacity: seg.pct < 10 ? 0 : 0.92 }}
+      {/* the needle is anchored to the bar, not the shell, so it never
+          drifts into the caption when the caption wraps on small screens */}
+      <div className="bar-stage">
+        <div
+          className="bar"
+          role="img"
+          aria-label="A bar showing how the analyst's week splits between assembly and thinking, in the old world versus now."
+        >
+          {s.segments.map((seg, i) => (
+            <div
+              key={i}
+              className={`seg ${seg.kind}`}
+              style={{ width: `${seg.pct}%` }}
             >
-              {seg.label}
-            </span>
-          </div>
-        ))}
-      </div>
+              <span
+                className="seg-label"
+                style={{ opacity: seg.pct < 10 ? 0 : 0.92 }}
+              >
+                {seg.label}
+              </span>
+            </div>
+          ))}
+        </div>
 
-      <div className="needle-wrap">
-        <div className="needle" style={{ left: `${s.needle}%` }}>
-          <span className="cap">VALUE</span>
+        <div className="needle-wrap">
+          <div className="needle" style={{ left: `${s.needle}%` }}>
+            <span className="cap">VALUE</span>
+          </div>
         </div>
       </div>
 
