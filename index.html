@@ -19,7 +19,7 @@
 /* ------------------------------------------------------------------
    Directed Analysis · landing page
    Structure follows the tableau.com method: header with paired CTAs,
-   announcement bar, gradient hero with collage, featured card, centered
+   announcement bar, hero with "The analyst's week" interactive panel, featured card, centered
    section headings over card rows, proof tiles, promo band, final CTA,
    four-column footer with a dark legal strip.
    All subscribe links point at Substack; search "substack.com/subscribe".
@@ -80,38 +80,40 @@ p{margin:0}
 
 /* hero */
 .hero{background:linear-gradient(180deg,var(--tint) 0%,#fff 100%);padding:clamp(48px,7vw,96px) 0 clamp(40px,6vw,80px);overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
-.hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.05;font-weight:800;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1.02;font-weight:800;margin-bottom:1.4rem;max-width:14ch}
 .hero h1 .accent{color:var(--primary)}
-.hero .sub{font-size:clamp(18px,1.6vw,22px);color:var(--ink);max-width:34ch;margin-bottom:2rem}
-.hero .ctas{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero .sub{font-size:clamp(18px,1.6vw,22px);color:var(--ink);max-width:52ch;margin-bottom:1.8rem}
+.hero .ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,56px)}
 
-/* collage (stands in for the product screenshot) */
-.collage{position:relative;min-height:530px}
-.collage .blob{position:absolute;border-radius:50%;background:var(--tint-2);z-index:0}
-.collage .b1{width:280px;height:280px;right:0;top:20px}
-.collage .b2{width:150px;height:150px;left:20px;bottom:10px;background:#FBE3D2}
-.ccard{position:absolute;background:#fff;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--line);z-index:1}
-.ccard .h{font-family:var(--head);font-weight:700;font-size:13px;color:var(--navy);padding:.7rem .9rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.ccard .h .dot{width:8px;height:8px;border-radius:50%;background:var(--primary)}
-.ccard .b{padding:.8rem .9rem;font-size:13.5px;color:var(--ink)}
-.c-brief{left:0;top:215px;width:min(300px,55%)}
-.c-brief .row{display:flex;justify-content:space-between;gap:.8rem;padding:.35rem 0;border-bottom:1px dashed var(--line)}
-.c-brief .row:last-child{border:0}
-.c-brief .row s{color:var(--muted)}
-.c-brief .row b{font-family:var(--head);font-weight:700;color:var(--primary);font-size:12px;white-space:nowrap}
-.c-q{right:0;top:0;width:min(330px,62%);background:var(--navy);color:#fff;border:0}
-.c-q .b{color:#fff;font-family:var(--head);font-weight:600;font-size:15px;line-height:1.4;padding:1rem}
-.c-q .b small{display:block;font-family:var(--body);font-weight:400;color:#C9D0DE;font-size:12px;margin-bottom:.4rem}
-.c-a{right:0;bottom:0;width:min(240px,44%);z-index:2}
-.c-a .bars{display:grid;gap:6px;margin-top:.5rem}
-.c-a .bar{height:10px;border-radius:5px;background:#EEE2D8}
-.c-a .bar i{display:block;height:100%;border-radius:5px;background:var(--primary)}
-.c-a .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:.5rem}
-.spark{position:absolute;z-index:2;width:14px;height:14px;color:var(--primary)}
-.spark::before,.spark::after{content:"";position:absolute;background:currentColor;border-radius:2px}
-.spark::before{left:6px;top:0;width:2px;height:14px}
-.spark::after{top:6px;left:0;width:14px;height:2px}
+/* the analyst's week panel */
+.week{background:var(--navy);color:#fff;border-radius:var(--r);padding:clamp(24px,3.5vw,44px);box-shadow:var(--shadow)}
+.week .eyebrow{font-family:var(--head);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9AA6BE;margin-bottom:.6rem}
+.week h2{color:#fff;font-size:clamp(22px,2.6vw,32px);line-height:1.2;font-weight:700;max-width:26ch;margin-bottom:2.4rem}
+.week h2 .gold{color:#D4A24A}
+.week .chart{position:relative;padding-top:26px}
+.week .marker{position:absolute;top:0;bottom:46px;width:3px;background:#F0C878;border-radius:2px;transform:translateX(-50%);transition:left .9s cubic-bezier(.2,.7,.2,1);z-index:2}
+.week .marker span{position:absolute;top:-6px;left:50%;transform:translate(-50%,-100%);font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.14em;color:#F0C878;white-space:nowrap}
+.week .bars{display:flex;gap:2px;height:104px;border-radius:6px;overflow:hidden}
+.week .seg{display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:600;font-size:15px;color:#14213D;background:#D4A24A;transition:flex-basis .9s cubic-bezier(.2,.7,.2,1);flex:0 0 auto;min-width:0;overflow:hidden;white-space:nowrap;cursor:default}
+.week .seg.asm{background:#48597A;color:#DCE3F0}
+.week .seg span{padding:0 .5rem}
+.week .axis{position:relative;height:40px;margin-top:6px;font-family:var(--head);font-size:12px;color:#8E9AB3}
+.week .axis i{position:absolute;top:0;transform:translateX(-50%);font-style:normal;text-align:center;line-height:1.3}
+.week .axis i::before{content:"";display:block;width:1px;height:6px;background:#3E4E6A;margin:0 auto 4px}
+.week .axis i:last-child{transform:translateX(-100%);text-align:right;white-space:nowrap}
+.week .seg .short{display:none}
+.week .axis i:last-child::before{margin-right:0}
+.week .axis i:first-child{transform:none;text-align:left}
+.week .axis i:first-child::before{margin-left:0}
+.week .foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.6rem}
+.week .toggle{display:flex;gap:.6rem}
+.week .toggle button{font-family:var(--head);font-weight:600;font-size:15px;padding:.7rem 1.1rem;border-radius:6px;border:1px solid #3E4E6A;background:transparent;color:#fff;cursor:pointer;transition:background .15s,color .15s}
+.week .toggle button[aria-pressed="true"]{background:#D4A24A;border-color:#D4A24A;color:#14213D}
+.week .cap{font-size:15px;color:#C9D0DE;text-align:right}
+.week .cap small{display:block;font-size:12px;color:#8E9AB3;margin-top:.2rem}
+.week .tip{position:absolute;pointer-events:none;background:#fff;color:var(--navy);font-family:var(--head);font-weight:600;font-size:13px;padding:.4rem .6rem;border-radius:6px;box-shadow:var(--shadow);transform:translate(-50%,-120%);white-space:nowrap;opacity:0;transition:opacity .12s;z-index:3}
+.week .tip.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.week .seg,.week .marker{transition:none}}
 
 /* featured card */
 .section{padding:clamp(40px,6vw,80px) 0}
@@ -220,11 +222,13 @@ footer{border-top:1px solid var(--line);background:#fff}
 @media (max-width:820px){
   .site-header nav{display:none}
   .site-header .utils .u{display:none}
-  .hero .wrap,.feature,.latest-wide,.split{grid-template-columns:1fr}
-  .collage{min-height:0;display:grid;gap:1rem}
-  .collage .blob,.collage .spark{display:none}
-  .ccard,.c-q,.c-brief,.c-a{position:static;width:100%}
+  .feature,.latest-wide,.split{grid-template-columns:1fr}
   .cards-3{grid-template-columns:1fr}
+  .week .seg{font-size:13px}
+  .week .seg .long{display:none}
+  .week .seg .short{display:inline}
+  .week .seg.tiny > span{visibility:hidden}
+  .week .cap{text-align:left}
   .brand{font-size:19px}
   .brand > span{white-space:nowrap}
 }
@@ -262,42 +266,32 @@ footer{border-top:1px solid var(--line);background:#fff}
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
-    <div>
-      <h1>We used to direct the tools. <span class="accent">Now we direct the analysis.</span></h1>
-      <p class="sub">For analysts working through the AI shift. Building the chart got easy. The analysis is where the value went. Tool-agnostic notes on how to think through a project, direct the work, and spend your time on the part that actually matters.</p>
-      <div class="ctas">
-        <a class="btn btn-primary" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe, free</a>
-        <a class="btn btn-outline" href="#thesis">Read the thesis</a>
-      </div>
+    <h1>We used to direct the tools. <span class="accent">Now we direct the analysis.</span></h1>
+    <p class="sub">Building the chart got easy. The analysis is where the value went. Tool-agnostic notes for the analyst in the AI shift.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://directedanalysis.substack.com/subscribe" target="_blank" rel="noopener">Subscribe, free</a>
+      <a class="btn btn-outline" href="#thesis">Read the thesis</a>
     </div>
-    <div class="collage" aria-hidden="true">
-      <div class="blob b1"></div><div class="blob b2"></div>
-      <span class="spark" style="left:10%;top:60px"></span>
-      <span class="spark" style="right:47%;bottom:30px"></span>
-      <div class="ccard c-q">
-        <div class="b"><small>The question you were handed</small>"Can you build a dashboard for regional sales?"<br><br><small>The real question</small>"Which region is quietly losing margin, and why?"</div>
-      </div>
-      <div class="ccard c-brief">
-        <div class="h">Where the hours go <span class="dot"></span></div>
-        <div class="b">
-          <div class="row"><s>Cleaning and joining</s><b>DIRECTED</b></div>
-          <div class="row"><s>Building the chart</s><b>NEARLY FREE</b></div>
-          <div class="row"><s>Rebuilding after the meeting</s><b>MINUTES</b></div>
-          <div class="row"><span>Framing the real question</span><b>THE JOB</b></div>
-          <div class="row"><span>Reading what the data says</span><b>THE JOB</b></div>
+
+    <div class="week" id="week">
+      <div class="eyebrow">The analyst's week</div>
+      <h2 id="week-title">The building is nearly free now. <span class="gold">The week is thinking.</span></h2>
+      <div class="chart">
+        <div class="marker" id="week-marker" style="left:78%"><span>VALUE</span></div>
+        <div class="bars" id="week-bars" role="img" aria-label="Share of the analyst's week spent thinking versus assembling, before and after the AI shift. Illustrative, not measured.">
+          <div class="seg" data-k="Framing the question" style="flex-basis:44%"><span><span class="long">Thinking</span><span class="short">Think</span></span></div>
+          <div class="seg asm" data-k="Assembly" style="flex-basis:12%"><span><span class="long">Assembly</span><span class="short">Build</span></span></div>
+          <div class="seg" data-k="Reading the answer" style="flex-basis:44%"><span><span class="long">Thinking</span><span class="short">Think</span></span></div>
         </div>
+        <div class="axis" aria-hidden="true"><i style="left:0">0</i><i style="left:25%">25</i><i style="left:50%">50</i><i style="left:75%">75</i><i style="left:100%">100%<br>of the week</i></div>
+        <div class="tip" id="week-tip"></div>
       </div>
-      <div class="ccard c-a">
-        <div class="h">Margin by region, trailing 12 months</div>
-        <div class="b">
-          <div class="bars">
-            <div class="bar"><i style="width:82%"></i></div>
-            <div class="bar"><i style="width:64%"></i></div>
-            <div class="bar"><i style="width:31%;background:#E07A4A"></i></div>
-            <div class="bar"><i style="width:58%"></i></div>
-          </div>
-          <div class="lbl"><span>West is down 19 points</span><span>flagged</span></div>
+      <div class="foot">
+        <div class="toggle" role="group" aria-label="Choose a week">
+          <button type="button" data-week="old" aria-pressed="false">The old week</button>
+          <button type="button" data-week="now" aria-pressed="true">The week now</button>
         </div>
+        <p class="cap" id="week-cap">Same job. The value moved.<small>Illustrative shape, not measured hours.</small></p>
       </div>
     </div>
   </div>
@@ -555,6 +549,39 @@ footer{border-top:1px solid var(--line);background:#fff}
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* the analyst's week */
+(function(){
+  var weeks={
+    old:{segs:[10,78,12],marker:5,
+      title:'The building ate the week. <span class="gold">The thinking got what was left.</span>',
+      cap:'Most of the hours went to assembly.'},
+    now:{segs:[44,12,44],marker:78,
+      title:'The building is nearly free now. <span class="gold">The week is thinking.</span>',
+      cap:'Same job. The value moved.'}
+  };
+  var segs=document.querySelectorAll('#week-bars .seg'),marker=document.getElementById('week-marker'),
+      title=document.getElementById('week-title'),cap=document.getElementById('week-cap'),
+      tip=document.getElementById('week-tip'),chart=document.querySelector('#week .chart');
+  function show(k){
+    var w=weeks[k];
+    segs.forEach(function(s,i){s.style.flexBasis=w.segs[i]+'%';s.setAttribute('data-v',w.segs[i]);s.classList.toggle('tiny',w.segs[i]<14);});
+    marker.style.left=w.marker+'%';
+    title.innerHTML=w.title;
+    cap.innerHTML=w.cap+'<small>Illustrative shape, not measured hours.</small>';
+    document.querySelectorAll('#week .toggle button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-week')===k));});
+  }
+  document.querySelectorAll('#week .toggle button').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-week'));});});
+  segs.forEach(function(s){
+    s.addEventListener('mousemove',function(e){
+      var r=chart.getBoundingClientRect();
+      tip.textContent=s.getAttribute('data-k')+' · '+(s.getAttribute('data-v')||s.style.flexBasis.replace('%',''))+'% of the week';
+      tip.style.left=(e.clientX-r.left)+'px';tip.style.top=(e.clientY-r.top)+'px';tip.classList.add('on');
+    });
+    s.addEventListener('mouseleave',function(){tip.classList.remove('on');});
+  });
+  show('now');
+})();
 var els=document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
   var io=new IntersectionObserver(function(entries){
