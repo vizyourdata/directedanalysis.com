@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <rect width="1024" height="1024" fill="#FFF6EE"/>
+  <polygon points="176,218 362,218 590,806 404,806" fill="#14213D"/>
+  <polygon points="662,218 848,218 620,806 434,806" fill="#14213D"/>
+  <defs><clipPath id="cap"><rect x="0" y="0" width="1024" height="352"/></clipPath></defs>
+  <polygon points="662,218 848,218 620,806 434,806" fill="#B93A1E" clip-path="url(#cap)"/>
+</svg>
