@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@800&amp;display=swap');text{font-family:'Figtree',system-ui,sans-serif;font-weight:800;font-size:196px;letter-spacing:-6px}</style>
+  <rect width="1024" height="1024" fill="#14213D"/>
+  <text x="56" y="360" fill="#FFF6EE">The</text>
+  <text x="56" y="548" fill="#F2B28C">Valuable</text>
+  <text x="56" y="736" fill="#FFF6EE">Part</text>
+  <rect x="446" y="666" width="72" height="72" rx="14" fill="#B93A1E"/>
+</svg>
