@@ -3,102 +3,145 @@ import { plotStates } from "../content";
 
 const TICKS = [0, 25, 50, 75, 100];
 
+// cumulative [start, end] in percent for each segment
+function spans(segments) {
+  let x = 0;
+  return segments.map((s) => {
+    const span = [x, x + s.pct];
+    x += s.pct;
+    return span;
+  });
+}
+
+// ribbon between the old bar (top edge y=0) and the now bar (y=100),
+// drawn in a 100x100 box that is stretched to the gap between the bars
+function ribbonPath([a0, a1], [b0, b1]) {
+  const c = 45; // curve tension
+  return [
+    `M${a0},0`,
+    `L${a1},0`,
+    `C${a1},${c} ${b1},${100 - c} ${b1},100`,
+    `L${b0},100`,
+    `C${b0},${100 - c} ${a0},${c} ${a0},0`,
+    "Z",
+  ].join(" ");
+}
+
+function Bar({ state, id }) {
+  return (
+    <div className="bar" role="img" aria-label={`${state.label}: ${state.segments.map((s) => `${s.label} ${s.pct}%`).join(", ")}. Value sits at ${state.needle}%.`}>
+      {state.segments.map((seg, i) => (
+        <div
+          key={i}
+          className={`seg ${seg.kind}`}
+          style={{ width: `${seg.pct}%`, "--i": i }}
+        >
+          <span className="seg-label">{seg.label}</span>
+        </div>
+      ))}
+      <span className="mark" style={{ left: `${state.needle}%` }} aria-hidden="true">
+        <i className="cap">VALUE</i>
+      </span>
+      <span className="sr-only" id={`bar-${id}`}>{state.caption.replace(/<[^>]+>/g, "")}</span>
+    </div>
+  );
+}
+
 export default function Plot() {
-  const [state, setState] = useState("old");
+  // reduced motion (or no IntersectionObserver): render the finished state
+  const [play, setPlay] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      (window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        !("IntersectionObserver" in window))
+  );
   const shellRef = useRef(null);
+  const { old, now } = plotStates;
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      setState("now");
-      return;
-    }
-    if (!("IntersectionObserver" in window) || !shellRef.current) {
-      setState("now");
-      return;
-    }
+    const el = shellRef.current;
+    if (!el || play) return;
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            io.disconnect();
-            setTimeout(() => setState("now"), 900);
-          }
-        });
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          setPlay(true);
+        }
       },
-      { threshold: 0.4 }
+      { threshold: 0.45 }
     );
-    io.observe(shellRef.current);
+    io.observe(el);
     return () => io.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [play]);
 
-  const s = plotStates[state];
+  const oldSpans = spans(old.segments);
+  const nowSpans = spans(now.segments);
 
   return (
-    <div className="plot-shell" id="plot" ref={shellRef}>
+    <div className={`plot-shell${play ? " play" : ""}`} id="plot" ref={shellRef}>
       <p className="plot-eyebrow">THE ANALYST&rsquo;S WEEK</p>
-      <p
-        className="plot-caption"
-        dangerouslySetInnerHTML={{ __html: s.caption }}
-      />
 
-      {/* the needle is anchored to the bar, not the shell, so it never
-          drifts into the caption when the caption wraps on small screens */}
-      <div className="bar-stage">
-        <div
-          className="bar"
-          role="img"
-          aria-label="A bar showing how the analyst's week splits between assembly and thinking, in the old world versus now."
-        >
-          {s.segments.map((seg, i) => (
-            <div
-              key={i}
-              className={`seg ${seg.kind}`}
-              style={{ width: `${seg.pct}%` }}
-            >
-              <span
-                className="seg-label"
-                style={{ opacity: seg.pct < 10 ? 0 : 0.92 }}
-              >
-                {seg.label}
-              </span>
-            </div>
-          ))}
+      <div className="plot-grid">
+        {/* old week */}
+        <div className="row row-old">
+          <div className="row-text">
+            <span className="row-label">{old.label}</span>
+            <p className="row-cap" dangerouslySetInnerHTML={{ __html: old.caption }} />
+          </div>
+          <Bar state={old} id="old" />
         </div>
 
-        <div className="needle-wrap">
-          <div className="needle" style={{ left: `${s.needle}%` }}>
-            <span className="cap">VALUE</span>
+        {/* ribbons: where each slice of the week went */}
+        <div className="row row-ribbons" aria-hidden="true">
+          <div className="row-text" />
+          <svg className="ribbons" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {old.segments.map((seg, i) => (
+              <path
+                key={i}
+                className={`ribbon ${seg.kind}`}
+                d={ribbonPath(oldSpans[i], nowSpans[i])}
+                style={{ "--i": i }}
+              />
+            ))}
+            <line
+              className="trace"
+              x1={old.needle}
+              y1="0"
+              x2={now.needle}
+              y2="100"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+        </div>
+
+        {/* the week now */}
+        <div className="row row-now">
+          <div className="row-text">
+            <span className="row-label">{now.label}</span>
+            <p className="row-cap" dangerouslySetInnerHTML={{ __html: now.caption }} />
+          </div>
+          <Bar state={now} id="now" />
+        </div>
+
+        <div className="row row-axis" aria-hidden="true">
+          <div className="row-text" />
+          <div className="axis">
+            {TICKS.map((t) => (
+              <span key={t} className="tick" style={{ left: `${t}%` }}>
+                {t === 100 ? (
+                  <>
+                    100%<span className="tick-rest"> of the week</span>
+                  </>
+                ) : (
+                  t
+                )}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="axis" aria-hidden="true">
-        {TICKS.map((t) => (
-          <span key={t} className="tick" style={{ left: `${t}%` }}>
-            {t === 100 ? "100% of the week" : t}
-          </span>
-        ))}
-      </div>
-
-      <div className="plot-controls">
-        <button
-          className="toggle"
-          aria-pressed={state === "old"}
-          onClick={() => setState("old")}
-        >
-          The old week
-        </button>
-        <button
-          className="toggle"
-          aria-pressed={state === "now"}
-          onClick={() => setState("now")}
-        >
-          The week now
-        </button>
-        <span className="plot-note">Same job. The value moved.</span>
-      </div>
+      <p className="plot-note">Same job. The value moved.</p>
     </div>
   );
 }

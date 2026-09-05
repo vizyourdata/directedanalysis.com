@@ -12,8 +12,11 @@ export const hero = {
 };
 
 // segments: [thinkLeft %, assembly %, thinkRight %]
+// The two states render as two stacked bars; ribbons connect each segment
+// to where it went, and the VALUE marker's move is traced between them.
 export const plotStates = {
   old: {
+    label: "The old week",
     segments: [
       { kind: "think", pct: 8, label: "Thinking" },
       { kind: "assemble", pct: 84, label: "Assembly" },
@@ -23,6 +26,7 @@ export const plotStates = {
     caption: "A week spent building. We called it analysis. <b>It wasn't.</b>",
   },
   now: {
+    label: "The week now",
     segments: [
       { kind: "think", pct: 44, label: "Thinking" },
       { kind: "assemble", pct: 12, label: "Assembly" },
