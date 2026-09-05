@@ -107,6 +107,13 @@ p{margin:0}
 @container (max-width:90px){.week .seg > span{visibility:hidden}}
 .week .marker{position:absolute;top:-8px;bottom:-8px;width:3px;margin-left:-1.5px;background:var(--navy);border-radius:2px;z-index:2;opacity:0}
 .week .marker span{position:absolute;top:-4px;left:50%;transform:translate(-50%,-100%);font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.14em;color:var(--navy);white-space:nowrap;background:#fff;padding:0 6px}
+.week .legend{list-style:none;margin:0;padding:10px 0 6px;display:flex;flex-wrap:wrap;gap:.35rem 1.3rem;font-family:var(--head);font-weight:600;font-size:12.5px;color:var(--muted)}
+.week .legend li{display:inline-flex;align-items:center;gap:.45rem}
+.week .sw{display:inline-block;width:14px;height:10px;border-radius:2px;flex:none}
+.week .sw-think{background:var(--primary)}
+.week .sw-asm{background:#DDE2EA}
+.week .sw-value{width:3px;height:14px;background:var(--navy)}
+.week .sw-ribbon{background:linear-gradient(90deg,rgba(185,58,30,.16),#DDE2EA);border:1px dashed var(--muted);height:12px}
 .week .row-ribbons{height:88px;align-items:stretch}
 .week .ribbons{display:block;width:100%;height:88px}
 .week .ribbon{clip-path:inset(0 0 100% 0)}
@@ -253,7 +260,8 @@ footer{border-top:1px solid var(--line);background:#fff}
   .week .seg .short{display:inline}
   .week .row{grid-template-columns:1fr;gap:6px}
   .week .bars{margin-top:26px} /* headroom for the VALUE cap under a caption */
-  .week .row-ribbons .row-text,.week .row-axis .row-text{display:none}
+  .week .row-ribbons .row-text,.week .row-axis .row-text,.week .row-legend .row-text{display:none}
+  .week .legend{padding:8px 0 4px;gap:.3rem .9rem;font-size:12px}
   .week .row-ribbons,.week .ribbons{height:60px}
   /* the now-row caption goes under its bar so the ribbons meet bar to bar */
   .week .row-now .row-text{order:2;padding:8px 0 0}
@@ -318,6 +326,16 @@ footer{border-top:1px solid var(--line);background:#fff}
             <div class="seg" data-k="Reading the answer" data-v="12" style="flex-basis:12%;--i:2"><span><span class="long">Thinking</span><span class="short">Think</span></span></div>
             <div class="marker" style="left:5%" aria-hidden="true"><span>VALUE</span></div>
           </div>
+        </div>
+        <!-- legend -->
+        <div class="row row-legend">
+          <div class="row-text"></div>
+          <ul class="legend" aria-label="Legend">
+            <li><i class="sw sw-think"></i>Thinking</li>
+            <li><i class="sw sw-asm"></i>Assembly</li>
+            <li><i class="sw sw-value"></i>Where the value sits</li>
+            <li><i class="sw sw-ribbon"></i>Where each slice went</li>
+          </ul>
         </div>
         <!-- ribbons: where each slice of the week went (old spans → now spans) -->
         <div class="row row-ribbons" aria-hidden="true">
