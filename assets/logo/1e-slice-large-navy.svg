@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@700&amp;display=swap');text{font-family:'Figtree',system-ui,sans-serif;font-weight:700;font-size:64px;letter-spacing:-1px;fill:#FFFFFF}</style>
+  <rect width="1024" height="1024" fill="#14213D"/>
+  <defs><clipPath id="pill"><rect x="150" y="340" width="724" height="200" rx="100"/></clipPath></defs>
+  <g clip-path="url(#pill)">
+    <rect x="150" y="340" width="724" height="200" fill="#DDE2EA"/>
+    <rect x="690" y="340" width="184" height="200" fill="#B93A1E"/>
+  </g>
+  <!-- legend, large sizes only -->
+  <circle cx="182" cy="742" r="26" fill="#DDE2EA"/>
+  <text x="236" y="765">Valuable</text>
+  <circle cx="574" cy="742" r="26" fill="#B93A1E"/>
+  <text x="628" y="765">Part</text>
+</svg>
