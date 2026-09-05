@@ -8,7 +8,7 @@
   </g>
   <!-- legend, large sizes only -->
   <circle cx="182" cy="742" r="26" fill="#DDE2EA"/>
-  <text x="236" y="765">Valuable</text>
+  <text x="236" y="765">Value</text>
   <circle cx="574" cy="742" r="26" fill="#B93A1E"/>
-  <text x="628" y="765">Part</text>
+  <text x="628" y="765">Other</text>
 </svg>
