@@ -1,6 +1,6 @@
 // Single source of truth for copy + data. Edit words here, not in components.
 
-export const SUBSCRIBE_URL = "https://directedanalysis.substack.com/subscribe";
+export const SUBSCRIBE_URL = "https://directedanalysis.substack.com/";
 
 export const wordmark = "DIRECTED ANALYSIS";
 

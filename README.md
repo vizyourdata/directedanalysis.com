@@ -16,8 +16,8 @@ assets/img/favicon.svg
 ## Editing
 
 - **Subscribe form target:** both `<form class="sub">` elements point at
-  `https://directedanalysis.substack.com/subscribe` and pass the email as `?email=`.
-  The nav button and the Issue 01 link go there too (search for `substack.com/subscribe`).
+  `https://directedanalysis.substack.com/` and pass the email as `?email=`.
+  The nav button and the Issue 01 link go there too (search for `directedanalysis.substack.com`, not the /subscribe path).
 - **Copy:** everything is in `index.html`. Structure follows the tableau.com method: header with paired CTAs, announcement bar, gradient hero with a card collage, featured Issue 01 card, centered section headings over 3-card and 4-column rows, the moat split row, proof tiles, promo band, final CTA, four-column footer with a dark legal strip.
 
 ## Deploy
