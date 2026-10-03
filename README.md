@@ -18,7 +18,9 @@ assets/img/favicon.svg
 - **Subscribe form target:** both `<form class="sub">` elements point at
   `https://directedanalysis.substack.com/` and pass the email as `?email=`.
   The nav button and the Issue 01 link go there too (search for `directedanalysis.substack.com`, not the /subscribe path).
-- **Copy:** everything is in `index.html`. Structure follows the tableau.com method: header with paired CTAs, announcement bar, gradient hero with a card collage, featured Issue 01 card, centered section headings over 3-card and 4-column rows, the moat split row, proof tiles, promo band, final CTA, four-column footer with a dark legal strip.
+- **Copy:** everything is in `index.html`. The visual system matches atalayahealth.com: warm paper with grain, slate and amber, Fraunces headings, Inter body, IBM Plex Mono for numbers and labels, light and dark. Sections: centered hero with the email form, the close week panel, an amber callout, Issue 01, the four steps, upcoming essays, the method, about, a CTA card, and a four-column footer.
+- **Audience:** written for accountants and finance analysts without naming them much. The close week, variances, tying out and review notes carry it. Keep new copy in that vocabulary.
+- **Subscribe form:** a GET to the Substack base URL with `email` as the field name.
 
 ## Deploy
 

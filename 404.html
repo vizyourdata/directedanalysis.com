@@ -1,9 +1,25 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Not found · Directed Analysis</title>
+<meta name="theme-color" content="#17313a">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;800&family=Source+Sans+3&display=swap" rel="stylesheet">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(180deg,#FFF6EE,#fff);color:#14213D;font-family:"Source Sans 3",system-ui,sans-serif;text-align:center;padding:24px}
-h1{font-family:"Figtree",system-ui,sans-serif;font-weight:800;font-size:clamp(34px,6vw,64px);letter-spacing:-.02em;line-height:1.05;margin:0 0 1rem;max-width:16ch}h1 em{font-style:normal;color:#B93A1E}
-a{display:inline-block;margin-top:.5rem;font-family:"Figtree",sans-serif;font-weight:600;background:#B93A1E;color:#fff;text-decoration:none;padding:.8rem 1.4rem;border-radius:8px}</style></head>
-<body><div><h1>That page is <em>not the valuable part.</em></h1><p>404</p><a href="/">Back to Directed Analysis</a></div></body></html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600,30&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--paper:#f7f3ea;--ink:#1b1e23;--ink-2:#3b4148;--muted:#6a6357;--amber:#d6892e;--slate:#17313a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--paper:#0f2229;--ink:#f7f3ea;--ink-2:#cfc7b5;--muted:#9a9385;--amber:#e7a24a}}
+:root[data-theme="dark"]{color-scheme:dark;--paper:#0f2229;--ink:#f7f3ea;--ink-2:#cfc7b5;--muted:#9a9385;--amber:#e7a24a}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;text-align:center;padding:24px 16px;-webkit-font-smoothing:antialiased}
+.code{font-family:"IBM Plex Mono",monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:0 0 1rem}
+h1{font-family:"Fraunces",Georgia,serif;font-variation-settings:"opsz" 144,"SOFT" 30;font-weight:600;font-size:clamp(32px,6vw,56px);letter-spacing:-.01em;line-height:1.05;margin:0 0 1rem}
+p{color:var(--ink-2);margin:0 auto 1.75rem;max-width:30rem}
+a{display:inline-flex;font-weight:600;background:var(--amber);color:#0f2229;text-decoration:none;padding:.5rem 1.1rem;border-radius:8px}
+a:hover{filter:brightness(1.06)}
+</style></head>
+<body><div>
+<p class="code">404</p>
+<h1>That page does not exist.</h1>
+<p>It may have moved. Everything that is published lives on the home page and on Substack.</p>
+<a href="/">Back to Directed Analysis</a>
+</div></body></html>
