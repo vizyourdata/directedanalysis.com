@@ -15,12 +15,12 @@ assets/img/favicon.svg
 
 ## Editing
 
-- **Subscribe form target:** both `<form class="sub">` elements point at
-  `https://directedanalysis.substack.com/` and pass the email as `?email=`.
+- **Subscribe form target:** the signup forms (home and /cohort) point at
+  `https://directedanalysis.substack.com/subscribe` and pass the email as `?email=`, which prefills Substack's subscribe page (the base URL ignores it).
   The nav button and the Issue 01 link go there too (search for `directedanalysis.substack.com`, not the /subscribe path).
 - **Copy:** everything is in `index.html`. The visual system matches atalayahealth.com: warm paper with grain, slate and amber, Fraunces headings, Inter body, IBM Plex Mono for numbers and labels, light and dark. Sections: centered hero with the email form, the close week panel, an amber callout, Issue 01, the four steps, upcoming essays, the method, about, a CTA card, and a four-column footer.
 - **Audience:** written for accountants and finance analysts without naming them much. The close week, variances, tying out and review notes carry it. Keep new copy in that vocabulary.
-- **Subscribe form:** a GET to the Substack base URL with `email` as the field name.
+- **Subscribe form:** a GET to `/subscribe` with `email` as the field name. Substack's direct `api/v1/free` endpoint returns 403 from other sites.
 
 ## Deploy
 
