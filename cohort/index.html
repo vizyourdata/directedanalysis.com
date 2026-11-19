@@ -126,6 +126,7 @@ main{flex:1}
 .signup input{flex:1;min-width:0;background:transparent;border:0;outline:none;padding:.5rem .25rem .5rem .6rem;font:inherit;font-size:1rem;color:var(--ink)}
 .signup input::placeholder{color:var(--muted)}
 .signup .note{margin-top:.75rem;font-size:.875rem;color:var(--muted)}
+.signup .note.ok{color:var(--ink)}
 
 .grid{display:grid;gap:1rem}
 .mt8{margin-top:2rem}
@@ -231,12 +232,12 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
     </div>
     <div class="signup" id="join">
       <!-- JOIN_URL: when enrollment opens, replace this form with a button to the payment link -->
-      <form action="https://directedanalysis.substack.com/subscribe" method="get" target="_blank">
+      <form id="join-form" novalidate>
         <label for="email" class="sr-only">Email address</label>
         <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
         <button class="btn-hero" type="submit">Join the list</button>
       </form>
-      <p class="note">The January dates, times and the link to enroll go to the list first. Joining also gets you the free weekly essays.</p>
+      <p class="note" id="join-note" aria-live="polite">The January dates, times and the link to enroll go to the list first.</p>
     </div>
   </div>
 </section>
@@ -502,5 +503,27 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
 </footer>
 
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+// Cohort list: subscribes straight to Kit (TableauOps account) with the
+// "directed-analysis: cohort" tag. The v3 api_key is Kit's public key (it can
+// add subscribers but cannot read them); the secret stays out of the page.
+(function(){
+  var f=document.getElementById('join-form'),n=document.getElementById('join-note');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=f.querySelector('input[type=email]'),b=f.querySelector('button'),email=i.value.trim();
+    if(!i.checkValidity()||!email){n.className='note';n.textContent='That email doesn’t look right. Try again?';i.focus();return;}
+    b.disabled=true;b.textContent='Joining…';
+    fetch('https://api.convertkit.com/v3/tags/26171040/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({api_key:'KKSBTwI68FnEao2y6N-6ag',email:email})})
+    .then(function(r){if(!r.ok)throw new Error(r.status);
+      f.style.display='none';n.className='note ok';
+      n.textContent='You’re on the list. The January dates and the link to enroll will come to '+email+' first.';})
+    .catch(function(){b.disabled=false;b.textContent='Join the list';n.className='note';
+      n.textContent='Something went wrong on our end. Try again in a minute.';});
+  });
+})();
+</script>
 </body>
 </html>
