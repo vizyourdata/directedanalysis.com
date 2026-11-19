@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Founding Cohort · Directed Analysis</title>
+<meta name="description" content="A six week founding cohort for working analysts. Bring one real question from your job and work it from the request you were handed to something the business can trust. Twelve seats.">
+<meta name="theme-color" content="#eeede9">
+<link rel="canonical" href="https://directedanalysis.com/cohort/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Directed Analysis · Founding Cohort">
+<meta property="og:description" content="Six weeks, one real question, twelve seats. The method for turning a vague question into a solved problem.">
+<meta property="og:url" content="https://directedanalysis.com/cohort/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Directed Analysis · founding cohort sales page
+   Same visual system as the landing page (/index.html). Until there is
+   a checkout link, every "join" button points at the Substack list.
+   To open enrollment: search "JOIN_URL" and swap in the payment link.
+   ------------------------------------------------------------------ */
+:root{
+  color-scheme:light;
+  --paper:#eeede9;--paper-2:#f5f4f0;--field:#efeeea;--fill:#e3e1dc;
+  --line:#d9d6ce;--rule:#e2e0db;--dot:#dad9d6;
+  --ink:#1a1a1a;--ink-2:#3a3a3a;--muted:#6e6961;--on-ink:#f5f4f0;
+  --brand:#d6892e;
+  --shadow:0 1px 2px #0000000a,0 10px 28px -18px #0000002e;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#161615;--paper-2:#1e1e1c;--field:#1a1a19;--fill:#2b2a28;
+    --line:#34332f;--rule:#2a2927;--dot:#262624;
+    --ink:#eeede9;--ink-2:#cbc9c3;--muted:#9a958c;--on-ink:#161615;
+    --brand:#e7a24a;
+    --shadow:0 1px 2px #00000040,0 10px 28px -18px #00000099;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#161615;--paper-2:#1e1e1c;--field:#1a1a19;--fill:#2b2a28;
+  --line:#34332f;--rule:#2a2927;--dot:#262624;
+  --ink:#eeede9;--ink-2:#cbc9c3;--muted:#9a958c;--on-ink:#161615;
+  --brand:#e7a24a;
+  --shadow:0 1px 2px #00000040,0 10px 28px -18px #00000099;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background-color:var(--paper);background-image:radial-gradient(var(--dot) 1px,transparent 1.3px);background-size:24px 24px;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;display:flex;flex-direction:column;min-height:100vh}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:inherit;font-size:inherit}
+a{color:inherit}
+main{flex:1}
+::selection{background:var(--ink);color:var(--on-ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 16px}
+.narrow{max-width:56rem}
+@media (min-width:640px){.wrap{padding:0 24px}}
+
+.display{font-family:var(--sans);font-weight:700;letter-spacing:-.03em}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.h2{font-size:1.5rem;line-height:1.15;color:var(--ink)}
+@media (min-width:640px){.h2{font-size:2rem}}
+.lede{color:var(--ink-2);margin-top:.6rem;max-width:42rem;font-size:1.0625rem}
+.ink2{color:var(--ink-2)}
+.label,.eyebrow,.kicker{font-family:var(--mono);font-size:.75rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.prose p{color:var(--ink-2);font-size:1.0625rem;line-height:1.65}
+.prose p+p{margin-top:1rem}
+.prose strong{color:var(--ink);font-weight:600}
+
+.btn-primary,.btn-hero{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;text-decoration:none;transition:background .15s,transform .15s;white-space:nowrap;border:0;cursor:pointer;font:inherit;font-weight:500;padding:.5rem 1rem}
+.btn-hero{background:var(--ink);color:var(--on-ink)}
+.btn-hero:hover{background:var(--ink-2)}
+.btn-primary{background:var(--fill);color:var(--ink)}
+.btn-primary:hover{background:var(--line)}
+.btn-primary:active,.btn-hero:active{transform:translateY(1px)}
+.ulink{font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--muted);text-underline-offset:4px}
+.ulink:hover{text-decoration-color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;font-size:.9375rem;margin-top:1.25rem}
+
+.card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.callout{border-left:3px solid var(--ink);padding-left:1.1rem}
+.band{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sec{padding-top:4rem;padding-bottom:4rem}
+.sec-sm{padding-top:3.5rem;padding-bottom:3.5rem}
+
+.topstrip{display:flex;justify-content:space-between;gap:1rem;padding-top:.6rem;padding-bottom:.6rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.topstrip span:last-child{text-align:right}
+@media (max-width:560px){.topstrip span:last-child{display:none}}
+.site-header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.site-header .inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.brand{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--ink)}
+.brand svg{width:20px;height:20px;flex:none}
+.wordmark{font-weight:700;letter-spacing:-.03em;font-size:1.125rem;line-height:1}
+.wordmark-sub{font-family:var(--mono);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-left:.5rem}
+.site-header nav{display:none;align-items:center;gap:.25rem}
+.site-header nav a{font-size:.9375rem;color:var(--ink-2);text-decoration:none;padding:.35rem .75rem;border-radius:999px;transition:background .15s,color .15s}
+.site-header nav a:hover{background:var(--fill);color:var(--ink)}
+.site-header .btn-hero{font-size:.875rem;padding:.4rem .9rem}
+@media (min-width:860px){.site-header nav{display:flex}}
+.v-stroke{fill:var(--ink)}
+.v-slice{fill:var(--brand)}
+
+.hero{padding:3.5rem 0 1rem}
+@media (min-width:640px){.hero{padding-top:5rem}}
+.hero-copy{max-width:50rem}
+.hero .eyebrow{margin-bottom:.9rem}
+.hero h1{font-size:2.5rem;line-height:1.02;letter-spacing:-.04em;color:var(--ink)}
+@media (min-width:640px){.hero h1{font-size:4rem}}
+.hero .sub{max-width:40rem;margin-top:1.25rem;font-size:1.1875rem;line-height:1.55;color:var(--ink-2)}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.facts span{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--fill);border-radius:999px;padding:.3rem .75rem}
+.signup{max-width:36rem;margin-top:2rem}
+.signup form{display:flex;align-items:center;gap:.5rem;border:1px solid var(--line);background:var(--paper-2);border-radius:12px;padding:.4rem;box-shadow:var(--shadow)}
+.signup form:focus-within{border-color:var(--ink)}
+.signup input{flex:1;min-width:0;background:transparent;border:0;outline:none;padding:.5rem .25rem .5rem .6rem;font:inherit;font-size:1rem;color:var(--ink)}
+.signup input::placeholder{color:var(--muted)}
+.signup .note{margin-top:.75rem;font-size:.875rem;color:var(--muted)}
+
+.grid{display:grid;gap:1rem}
+.mt8{margin-top:2rem}
+.mt6{margin-top:1rem}
+@media (min-width:768px){
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.step{padding:1.4rem 1.5rem}
+.step .n{font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
+.step h3{font-size:1.1875rem;line-height:1.25;color:var(--ink);margin-top:.4rem}
+.step p{margin-top:.5rem;font-size:.9375rem;line-height:1.6;color:var(--ink-2)}
+
+.split-note{border-radius:10px;background:var(--field);padding:1.1rem 1.25rem;border:1px solid var(--line)}
+.split-note.good{border-color:var(--ink)}
+.split-note .t{font-size:.875rem;font-weight:600;color:var(--muted)}
+.split-note.good .t{color:var(--ink)}
+.split-note p:last-child{margin-top:.25rem;font-size:.9375rem;color:var(--ink-2)}
+
+.two{display:grid;gap:2rem;align-items:start}
+@media (min-width:768px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kicker{display:block;margin-bottom:.6rem}
+
+.nlist{display:flex;flex-direction:column;gap:1.1rem}
+.nlist .item{display:flex;gap:1rem}
+.nlist .n{font-size:.75rem;color:var(--muted);padding-top:.2rem}
+.nlist strong{display:block;font-weight:600;color:var(--ink)}
+.nlist span.d{display:block;font-size:.9375rem;color:var(--ink-2)}
+
+.room{padding:1.75rem}
+.room blockquote{margin:0;font-weight:600;font-size:1.375rem;line-height:1.3;letter-spacing:-.02em;color:var(--ink)}
+.room p{margin-top:1rem;font-size:.9375rem;line-height:1.6;color:var(--ink-2)}
+
+.price{padding:clamp(20px,3.5vw,36px)}
+.price .amt{font-size:3rem;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.price .amt small{font-family:var(--mono);font-size:.75rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-left:.75rem;vertical-align:middle}
+.price .btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+
+.faq{margin-top:2rem;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:1rem 0}
+.faq summary{cursor:pointer;font-weight:600;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--muted)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin-top:.6rem;color:var(--ink-2);font-size:.9375rem;line-height:1.6;max-width:44rem}
+
+.cta{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:1.5rem;padding:2rem}
+@media (min-width:640px){.cta{flex-direction:row;align-items:center}}
+.cta .btns{display:flex;flex-wrap:wrap;gap:.6rem;flex-shrink:0}
+
+footer{margin-top:5rem;border-top:1px solid var(--rule)}
+.foot{display:grid;gap:2.5rem;padding:3rem 0 0}
+@media (min-width:640px){.foot{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.foot{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.foot h4{margin:0;font-family:var(--mono);font-weight:400;font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.foot ul{list-style:none;margin:.75rem 0 0;padding:0;display:grid;gap:.5rem}
+.foot ul a{font-size:.9375rem;color:var(--ink-2);text-decoration:none}
+.foot ul a:hover{color:var(--ink)}
+.foot .about{max-width:20rem}
+.foot .about p{margin-top:.75rem;font-size:.9375rem;color:var(--muted)}
+.legal{display:flex;flex-direction:column;justify-content:space-between;gap:.75rem;margin-top:2.5rem;padding:1.25rem 0 2.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (min-width:640px){.legal{flex-direction:row}}
+@media (max-width:420px){.signup .btn-hero{padding:.5rem .8rem}}
+@media print{body{background-image:none}nav,.signup{display:none!important}}
+</style>
+</head>
+<body id="top">
+
+<div class="wrap"><div class="topstrip"><span>Directed Analysis · founding cohort</span><span>Twelve seats · six weeks · live</span></div></div>
+<header class="site-header">
+  <div class="wrap"><div class="inner">
+    <a class="brand" href="/" aria-label="Directed Analysis home">
+      <svg viewBox="150 190 724 644" aria-hidden="true">
+        <polygon class="v-stroke" points="176,218 362,218 590,806 404,806"/>
+        <polygon class="v-stroke" points="662,218 848,218 620,806 434,806"/>
+        <polygon class="v-slice" points="662,218 848,218 796,352 610,352"/>
+      </svg>
+      <span><span class="wordmark">Directed</span><span class="wordmark-sub">Analysis</span></span>
+    </a>
+    <nav aria-label="Cohort">
+      <a href="#weeks">The six weeks</a>
+      <a href="#how">How it runs</a>
+      <a href="#price">Price</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <!-- JOIN_URL: swap for the payment link when enrollment opens -->
+    <a class="btn-hero" href="#join">Join the list</a>
+  </div></div>
+</header>
+
+<main>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Founding cohort · for working analysts</p>
+      <h1 class="display">Direct the analysis.</h1>
+      <p class="sub">Six weeks. One real question from your job. We work it from the request you were handed to something the business can trust, in whatever tool you already use.</p>
+      <div class="facts" aria-label="At a glance">
+        <span>6 live sessions</span><span>12 seats</span><span>Attend 5 of 6</span><span>$497 founding price</span>
+      </div>
+    </div>
+    <div class="signup" id="join">
+      <!-- JOIN_URL: when enrollment opens, replace this form with a button to the payment link -->
+      <form action="https://directedanalysis.substack.com/" method="get" target="_blank">
+        <label for="email" class="sr-only">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <button class="btn-hero" type="submit">Join the list</button>
+      </form>
+      <p class="note">Dates, times and the link to enroll go to the list first. Joining also gets you the free weekly essays.</p>
+    </div>
+  </div>
+</section>
+
+<!-- the story -->
+<section class="sec-sm">
+  <div class="wrap narrow">
+    <div class="callout prose">
+      <p>For fifteen years my hours went to assembly. Pulling the detail, tying it out, rebuilding the schedule. I started in Excel making line graphs I still cringe at.</p>
+      <p>Then the tools came and the assembly got cheap. What it gave back is the part that always got squeezed: finding out why the number moved, deciding what matters, checking the answer, handing back something people can act on.</p>
+      <p>I have done that part for fifteen years, in whatever hours the assembly left over. It was always the valuable part. Now it gets the week.</p>
+      <p><strong>That part is what this cohort teaches.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- the method -->
+<section class="band">
+  <div class="wrap sec">
+    <div class="two">
+      <div>
+        <span class="kicker">The method</span>
+        <h2 class="display h2">How I turn a vague question into a solved problem.</h2>
+      </div>
+      <div class="prose">
+        <p>It is not a course about a tool. Tools change. This is how I think.</p>
+        <p>How I find the real question under the one I was handed. How I decide what is worth building and what to throw out. How I direct the AI to do the work, and how I catch it when it is confidently wrong. How I hand back something the business can actually trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- six weeks -->
+<section class="sec" id="weeks">
+  <div class="wrap">
+    <h2 class="display h2">Six weeks, one real question</h2>
+    <p class="lede">Each week we try the step on a shared practice case, a made up company's books with a budget variance nobody can explain. Then you do it on your own question.</p>
+    <div class="grid g3 mt8">
+      <div class="card step">
+        <p class="num n">WEEK 01</p>
+        <h3 class="display">Find the real question</h3>
+        <p>Rewrite the request the way an analyst would: what is measured, against what, at what level of detail, over what period, and why it matters. Then confirm it with the person who asked.</p>
+      </div>
+      <div class="card step">
+        <p class="num n">WEEK 02</p>
+        <h3 class="display">Decide what is worth building</h3>
+        <p>Size the problem before you solve it. Is the gap big enough to matter? Compared to what? Write down what you will not build.</p>
+      </div>
+      <div class="card step">
+        <p class="num n">WEEK 03</p>
+        <h3 class="display">Direct the build</h3>
+        <p>Hand the assembly to AI with a brief it cannot misread. You decide. It types.</p>
+      </div>
+      <div class="card step">
+        <p class="num n">WEEK 04</p>
+        <h3 class="display">Catch it when it is wrong</h3>
+        <p>Tie every number back to its source. Sort every cause as real spend, timing, or a booking error. Nothing goes in the write up without a query that proves it.</p>
+      </div>
+      <div class="card step">
+        <p class="num n">WEEK 05</p>
+        <h3 class="display">Hand back something people trust</h3>
+        <p>The findings, the so what, and a note a CFO would sign off on, all drawn from the workpaper.</p>
+      </div>
+      <div class="card step">
+        <p class="num n">WEEK 06</p>
+        <h3 class="display">Demo day</h3>
+        <p>You walk the group through your project, from the question you were handed to the one you answered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- how it runs -->
+<section class="band" id="how">
+  <div class="wrap sec">
+    <h2 class="display h2">How it runs</h2>
+    <p class="lede">This is a working group, not a webinar. It only works if people show up.</p>
+    <div class="two mt8">
+      <div class="nlist">
+        <div class="item">
+          <span class="num n">01</span>
+          <div><strong>Six live sessions, 75 minutes each</strong><span class="d">Once a week. The day and time go to the list before enrollment opens.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">02</span>
+          <div><strong>You attend at least five of the six</strong><span class="d">Live, camera on, with your project open. Life happens, so you get one miss. Plan your calendar around the other five before you join.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">03</span>
+          <div><strong>Not every session is recorded</strong><span class="d">Some will be, most of the time, but do not count on a replay. The value is in the room, and a recording cannot give you feedback on your work.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">04</span>
+          <div><strong>Twelve seats</strong><span class="d">Small enough that every project gets real time in every session.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">05</span>
+          <div><strong>About two hours a week between sessions</strong><span class="d">On your own question, so each week you bring something real to the group.</span></div>
+        </div>
+      </div>
+      <figure class="card room" style="margin:0">
+        <blockquote>The other eleven people are there for your advice. You are there for theirs.</blockquote>
+        <p>Half of what you learn comes from watching someone else's question get sharper, and from saying out loud what you would check next. That only happens when the same people show up week after week.</p>
+        <p>So attendance is the one thing I am strict about. If five of the six sessions will not fit your calendar, wait for the next one.</p>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- who -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="display h2">Who it is for</h2>
+    <p class="lede">It is for the working analyst in the AI era. Not the beginner trying to break in. You are already in. You can feel the ground moving under the job, and you have decided to move up instead of out.</p>
+    <div class="grid g2 mt8">
+      <div class="split-note good">
+        <p class="t">A good fit</p>
+        <p>You explain numbers for a living. You have a real question at work you have been meaning to get to the bottom of. You can make five of six live sessions.</p>
+      </div>
+      <div class="split-note">
+        <p class="t">Not a fit</p>
+        <p>You want to learn a specific tool, you are looking for your first analyst job, or you were hoping to watch recordings on your own time. There are good options for all three. This is not one of them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- price -->
+<section class="band" id="price">
+  <div class="wrap sec">
+    <div class="two">
+      <div class="prose">
+        <span class="kicker">The price</span>
+        <p>I built this out of years of real projects and a lot of expensive mistakes. It is the most valuable thing I know how to teach.</p>
+        <p>It is worth more than the price, and I am not going to pretend otherwise. One project run this way pays for it several times over, and the skill outlasts every tool you will ever learn.</p>
+        <p>This is the founding cohort. I am building the material with this group, so parts will be rough. That is the trade, and it is why the price is where it is.</p>
+      </div>
+      <div class="card price">
+        <p class="eyebrow">Founding cohort</p>
+        <p class="amt">$497<small>Six weeks</small></p>
+        <div class="nlist mt8">
+          <div class="item"><span class="num n">+</span><div><span class="d">Six live working sessions with eleven other analysts</span></div></div>
+          <div class="item"><span class="num n">+</span><div><span class="d">The practice case, with its answer key revealed as we go</span></div></div>
+          <div class="item"><span class="num n">+</span><div><span class="d">Your own project, finished, with the workpaper behind it</span></div></div>
+          <div class="item"><span class="num n">+</span><div><span class="d">A method you will use on the next question, and the one after that</span></div></div>
+        </div>
+        <div class="btns">
+          <!-- JOIN_URL -->
+          <a class="btn-hero" href="#join">Join the list</a>
+        </div>
+        <p class="ink2" style="margin-top:.75rem;font-size:.875rem">Enrollment opens to the list first. Twelve seats.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section class="sec" id="faq">
+  <div class="wrap narrow">
+    <h2 class="display h2">Questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I need to code?</summary>
+        <p>No. I am not a coder either. You will direct the work, not write it.</p>
+      </details>
+      <details>
+        <summary>Which tools?</summary>
+        <p>Whatever you use now. Excel, SQL, Tableau, Power BI, all fine. The method does not care.</p>
+      </details>
+      <details>
+        <summary>Which AI?</summary>
+        <p>Whatever your company allows. If it allows nothing yet, you will still learn the method, and you will be ready when it does.</p>
+      </details>
+      <details>
+        <summary>Can I bring a confidential project?</summary>
+        <p>Yes. Your data stays on your side. In sessions you share the reasoning, not the rows.</p>
+      </details>
+      <details>
+        <summary>What if I miss a session?</summary>
+        <p>You get one. Catch up with the group's notes and bring your questions to the next session. Some sessions are recorded, but not all of them, so please do not plan on watching later. If you already know you will miss two or more, wait for a later cohort.</p>
+      </details>
+      <details>
+        <summary>Why so strict about attendance?</summary>
+        <p>Because the group is half of what you are paying for. Everyone is there to give feedback on each other's work, and a seat that sits empty is feedback someone else does not get.</p>
+      </details>
+      <details>
+        <summary>Will there be another cohort?</summary>
+        <p>The plan is to run more. I will not promise when, or at what price.</p>
+      </details>
+    </div>
+    <p class="ink2" style="margin-top:2rem;font-size:1.0625rem">I have plenty of free work, and you should read all of it. This is not that. This is the part I spent a career earning. This is the valuable part.</p>
+  </div>
+</section>
+
+<!-- cta -->
+<section>
+  <div class="wrap">
+    <div class="card cta">
+      <div>
+        <h2 class="display h2" style="font-size:1.5rem">Bring one real question.</h2>
+        <p class="ink2" style="margin-top:.5rem;max-width:32rem">Six weeks, twelve seats, five of six sessions live. Enrollment opens to the list first.</p>
+      </div>
+      <div class="btns">
+        <!-- JOIN_URL -->
+        <a class="btn-hero" href="#join">Join the list</a>
+        <a class="btn-primary" href="https://directedanalysis.substack.com/p/the-homecoming" target="_blank" rel="noopener">Read Issue 01</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a class="brand" href="/">
+          <svg viewBox="150 190 724 644" aria-hidden="true">
+            <polygon class="v-stroke" points="176,218 362,218 590,806 404,806"/>
+            <polygon class="v-stroke" points="662,218 848,218 620,806 434,806"/>
+            <polygon class="v-slice" points="662,218 848,218 796,352 610,352"/>
+          </svg>
+          <span><span class="wordmark">Directed</span><span class="wordmark-sub">Analysis</span></span>
+        </a>
+        <p>Weekly essays for the people who explain the numbers.</p>
+      </div>
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="https://directedanalysis.substack.com/p/the-homecoming" target="_blank" rel="noopener">Issue 01: The Prodigal Analyst</a></li>
+          <li><a href="/#thesis">The thesis</a></li>
+          <li><a href="/#latest">What's next</a></li>
+          <li><a href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Archive on Substack</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>The method</h4>
+        <ul>
+          <li><a href="/#method">How it works</a></li>
+          <li><a href="/cohort/">Founding cohort</a></li>
+          <li><a href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Contact via Substack</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Eric Summers</h4>
+        <ul>
+          <li><a href="https://ericsummers.io" target="_blank" rel="noopener">ericsummers.io</a></li>
+          <li><a href="https://www.linkedin.com/in/ericsummers/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://tableauops.com" target="_blank" rel="noopener">TableauOps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© <span id="yr">2026</span> Eric Summers. Directed Analysis, a Directed Building property.</p>
+      <p class="num">Tool agnostic. No product behind it.</p>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
