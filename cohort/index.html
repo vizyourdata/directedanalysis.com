@@ -238,6 +238,7 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
       <form id="join-form" novalidate>
         <label for="email" class="sr-only">Email address</label>
         <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="btn-hero" type="submit">Join the list</button>
       </form>
       <p class="note" id="join-note" aria-live="polite">The January dates, times and the link to enroll go to the list first.</p>
@@ -507,9 +508,8 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
 
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 <script>
-// Cohort list: subscribes straight to Kit (TableauOps account) with the
-// "directed-analysis: cohort" tag. The v3 api_key is Kit's public key (it can
-// add subscribers but cannot read them); the secret stays out of the page.
+// Cohort list: posts to the TableauOps app, which keeps the roster, sends the
+// "you're on the list" email from mail.directedanalysis.com, and tags Kit as a backup.
 (function(){
   var f=document.getElementById('join-form'),n=document.getElementById('join-note');
   if(!f)return;
@@ -518,8 +518,9 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
     var i=f.querySelector('input[type=email]'),b=f.querySelector('button'),email=i.value.trim();
     if(!i.checkValidity()||!email){n.className='note';n.textContent='That email doesn’t look right. Try again?';i.focus();return;}
     b.disabled=true;b.textContent='Joining…';
-    fetch('https://api.convertkit.com/v3/tags/26171040/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({api_key:'KKSBTwI68FnEao2y6N-6ag',email:email})})
+    var src=(new URLSearchParams(location.search).get('ref')||'cohort-page').slice(0,64);
+    fetch('https://www.tableauops.com/api/cohort',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,source:src,website:(f.querySelector('[name=website]')||{}).value||''})})
     .then(function(r){if(!r.ok)throw new Error(r.status);
       f.style.display='none';n.className='note ok';
       n.textContent='You’re on the list. The January dates and the link to enroll will come to '+email+' first.';})
