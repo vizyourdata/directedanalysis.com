@@ -194,6 +194,20 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
 .hero .direct{font-family:var(--sans);font-weight:700;letter-spacing:-.02em;font-size:1.375rem;line-height:1.25;color:var(--brand);margin-top:.6rem}
 @media (min-width:640px){.hero .direct{font-size:1.75rem}}
 </style>
+<script>
+// PostHog (TableauOps project), cookieless: memory persistence, so no cookies
+// and no consent bar. ?internal=1 marks this browser internal for good, ?internal=0 undoes it.
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+(function(){
+  var out=false;
+  try{var q=new URLSearchParams(location.search).get('internal');
+    if(q==='1')localStorage.setItem('_ph_optout','1');
+    if(q==='0')localStorage.removeItem('_ph_optout');
+    out=localStorage.getItem('_ph_optout')==='1';}catch(e){}
+  posthog.init('phc_wHewtkMaAvVUmLSWzJ6MTyrFWmGsfRfmD6TfSCgTNmkw',{api_host:'https://us.i.posthog.com',persistence:'memory',person_profiles:'identified_only',capture_pageview:true,capture_pageleave:true,opt_out_capturing_by_default:out});
+  posthog.register({site:'directedanalysis.com'});
+})();
+</script>
 </head>
 <body id="top">
 
@@ -522,6 +536,9 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
     fetch('https://www.tableauops.com/api/cohort',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,source:src,website:(f.querySelector('[name=website]')||{}).value||''})})
     .then(function(r){if(!r.ok)throw new Error(r.status);
+      try{var own=/@vizyourdata\.com$|^(eric@tableauops\.com|esumm1@gmail\.com|eric\.summers@abouthealthcare\.com)$/i.test(email);
+        if(own){posthog.opt_out_capturing();localStorage.setItem('_ph_optout','1');}
+        else posthog.capture('cohort_list_joined',{source:src});}catch(e){}
       f.style.display='none';n.className='note ok';
       n.textContent='You’re on the list. The link to enroll will come to '+email+' first.';})
     .catch(function(){b.disabled=false;b.textContent='Join the list';n.className='note';
