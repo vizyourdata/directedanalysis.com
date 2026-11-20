@@ -211,6 +211,46 @@ main{flex:1}
 .step .n{font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
 .step h3{font-size:1.1875rem;line-height:1.25;color:var(--ink);margin-top:.4rem}
 .step p{margin-top:.5rem;font-size:.9375rem;line-height:1.6;color:var(--ink-2)}
+/* six-week timeline: a vertical rail on small screens, a left-to-right rail from 1000px.
+   Dots are the live Wednesday sessions, the dashed line is your own time in between. */
+.tl-card{padding:1.5rem 1.25rem 1.25rem}
+@media (min-width:640px){.tl-card{padding:2rem 1.75rem 1.5rem}}
+.tl{list-style:none;margin:0;padding:0}
+.tl-wk{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:.75rem}
+.tl-when{grid-column:2;grid-row:1;display:flex;align-items:baseline;gap:.6rem}
+.tl-date{font-size:.9375rem;font-weight:600;color:var(--ink)}
+.tl-n{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tl-rail{grid-column:1;grid-row:1/3;position:relative}
+.tl-rail::before{content:"";position:absolute;left:50%;top:.7rem;bottom:-.7rem;border-left:2px dashed var(--muted);transform:translateX(-1px)}
+.tl-wk:last-child .tl-rail::before{display:none}
+.tl-rail::after{content:"";position:absolute;left:50%;top:.7rem;width:14px;height:14px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px var(--paper-2);transform:translate(-50%,-50%)}
+.tl-wk.demo .tl-rail::after{background:var(--brand);width:18px;height:18px}
+.tl-body{grid-column:2;grid-row:2;padding-bottom:1.75rem}
+.tl-wk:last-child .tl-body{padding-bottom:0}
+.tl-body h3{font-size:1.125rem;line-height:1.25;color:var(--ink);margin-top:.3rem}
+.tl-body p{margin-top:.45rem;font-size:.9375rem;line-height:1.55;color:var(--ink-2)}
+.tl-body .tl-out{margin-top:.7rem;font-size:.875rem;font-weight:600;line-height:1.35;color:var(--ink)}
+.tl-out span{display:block;font-family:var(--mono);font-size:.625rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.tl-key{display:flex;flex-wrap:wrap;gap:.6rem 1.75rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.875rem;color:var(--ink-2)}
+.tl-key span{display:inline-flex;align-items:center;gap:.55rem}
+.tl-key i{flex:none;display:block}
+.tl-key .k-dot{width:12px;height:12px;border-radius:50%;background:var(--ink)}
+.tl-key .k-dash{width:26px;border-top:2px dashed var(--muted)}
+.tl-key .k-demo{width:14px;height:14px;border-radius:50%;background:var(--brand)}
+@media (min-width:1000px){
+  .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tl-wk{display:block}
+  .tl-when{flex-direction:column;align-items:flex-start;gap:0}
+  .tl-date{font-size:1.0625rem}
+  .tl-rail{height:20px;margin:.7rem 0 .9rem}
+  .tl-rail::before{left:7px;right:-7px;top:50%;bottom:auto;border-left:0;border-top:2px dashed var(--muted);transform:translateY(-1px)}
+  .tl-rail::after{left:7px;top:50%}
+  .tl-wk.demo .tl-rail::after{left:9px}
+  .tl-body{padding:0 1.1rem 0 0}
+  .tl-wk:last-child .tl-body{padding-right:0}
+  .tl-body h3{font-size:1.0625rem;margin-top:0}
+  .tl-body p{font-size:.875rem}
+}
 
 .split-note{border-radius:10px;background:var(--field);padding:1.1rem 1.25rem;border:1px solid var(--line)}
 .split-note.good{border-color:var(--ink)}
@@ -548,6 +588,75 @@ footer{margin-top:5rem;border-top:1px solid var(--rule)}
           <div><strong>Built in the open</strong><span class="d">In development now with a small founding cohort. Subscribers hear about it first.</span></div>
         </div>
       </div>
+    </div>
+    <div id="weeks" style="margin-top:3.5rem">
+      <span class="kicker">Chase the Valuable Part · founding cohort</span>
+      <h3 class="display h2">Six weeks, one hard case</h3>
+      <p class="lede">I hand you the case on day one: a business, its data, and a request from someone who does not quite know what they are asking for. Each Wednesday you take it one step further.</p>
+      <div class="card tl-card mt8">
+        <ol class="tl" aria-label="The six weeks, Wednesday by Wednesday">
+          <li class="tl-wk">
+            <p class="tl-when"><span class="num tl-date">Jan 13</span><span class="num tl-n">Week 01</span></p>
+            <div class="tl-rail" aria-hidden="true"></div>
+            <div class="tl-body">
+              <h3 class="display">Find the real question</h3>
+              <p>Rewrite the request the way an analyst would: what is measured, against what, at what level of detail, over what period, and why it matters. Then confirm it with the person who asked.</p>
+              <p class="tl-out"><span>You leave with</span>The question, confirmed</p>
+            </div>
+          </li>
+          <li class="tl-wk">
+            <p class="tl-when"><span class="num tl-date">Jan 20</span><span class="num tl-n">Week 02</span></p>
+            <div class="tl-rail" aria-hidden="true"></div>
+            <div class="tl-body">
+              <h3 class="display">Decide what is worth building</h3>
+              <p>Size the problem before you solve it. Is the gap big enough to matter? Compared to what? Write down what you will not build.</p>
+              <p class="tl-out"><span>You leave with</span>The scope, and the list of what you will not build</p>
+            </div>
+          </li>
+          <li class="tl-wk">
+            <p class="tl-when"><span class="num tl-date">Jan 27</span><span class="num tl-n">Week 03</span></p>
+            <div class="tl-rail" aria-hidden="true"></div>
+            <div class="tl-body">
+              <h3 class="display">Direct the build</h3>
+              <p>Hand the assembly to AI with a brief it cannot misread. You decide. It types.</p>
+              <p class="tl-out"><span>You leave with</span>The brief, and the build it produced</p>
+            </div>
+          </li>
+          <li class="tl-wk">
+            <p class="tl-when"><span class="num tl-date">Feb 3</span><span class="num tl-n">Week 04</span></p>
+            <div class="tl-rail" aria-hidden="true"></div>
+            <div class="tl-body">
+              <h3 class="display">Catch it when it is wrong</h3>
+              <p>Tie every number back to its source. Sort every cause as real spend, timing, or a booking error. Nothing goes in the write up without a query that proves it.</p>
+              <p class="tl-out"><span>You leave with</span>The workpaper, every number tied out</p>
+            </div>
+          </li>
+          <li class="tl-wk">
+            <p class="tl-when"><span class="num tl-date">Feb 10</span><span class="num tl-n">Week 05</span></p>
+            <div class="tl-rail" aria-hidden="true"></div>
+            <div class="tl-body">
+              <h3 class="display">Hand back something people trust</h3>
+              <p>The findings, the so what, and a note a CFO would sign off on, all drawn from the workpaper.</p>
+              <p class="tl-out"><span>You leave with</span>The note a CFO would sign</p>
+            </div>
+          </li>
+          <li class="tl-wk demo">
+            <p class="tl-when"><span class="num tl-date">Feb 17</span><span class="num tl-n">Week 06</span></p>
+            <div class="tl-rail" aria-hidden="true"></div>
+            <div class="tl-body">
+              <h3 class="display">Demo day</h3>
+              <p>You walk the group through your work on the case, from the request you were handed to the question you answered.</p>
+              <p class="tl-out"><span>You leave with</span>The finished case, presented</p>
+            </div>
+          </li>
+        </ol>
+        <div class="tl-key">
+          <span><i class="k-dot"></i>Every Wednesday: a 75 minute live session, with the conversation practiced in pairs</span>
+          <span><i class="k-dash"></i>In between: three to four hours on the case, on your own time</span>
+          <span><i class="k-demo"></i>Demo day: you present</span>
+        </div>
+      </div>
+      <div class="links"><a class="ulink" href="/cohort/">See the cohort and join the list</a></div>
     </div>
   </div>
 </section>
