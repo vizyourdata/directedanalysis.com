@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learn Tableau Studio and Tableau Data Apps · Directed Analysis</title>
+<meta name="description" content="Learn Tableau Studio and Tableau Data Apps. A live cohort built around your time: four one hour sessions, under two hours a week between, and you ship a Studio dashboard and your first Data App to your own site.">
+<meta name="theme-color" content="#eeede9">
+<link rel="canonical" href="https://directedanalysis.com/studio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Learn Tableau Studio and Tableau Data Apps · Directed Analysis">
+<meta property="og:description" content="One hour a week. Something working at the end of every one. Four live sessions, and you ship a Studio dashboard and your first Data App to your own site.">
+<meta property="og:url" content="https://directedanalysis.com/studio/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Directed Analysis · Learn Tableau Studio and Tableau Data Apps
+   Same visual system as /cohort/. Signups post to the TableauOps app with
+   page "/studio", which puts them on this cohort's list (studio-data-apps).
+   To open enrollment: search "JOIN_URL" and swap in the payment link.
+   ------------------------------------------------------------------ */
+:root{
+  color-scheme:light;
+  --paper:#eeede9;--paper-2:#f5f4f0;--field:#efeeea;--fill:#e3e1dc;
+  --line:#d9d6ce;--rule:#e2e0db;--dot:#dad9d6;
+  --ink:#1a1a1a;--ink-2:#3a3a3a;--muted:#6e6961;--on-ink:#f5f4f0;
+  --brand:#d6892e;
+  --shadow:0 1px 2px #0000000a,0 10px 28px -18px #0000002e;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#161615;--paper-2:#1e1e1c;--field:#1a1a19;--fill:#2b2a28;
+    --line:#34332f;--rule:#2a2927;--dot:#262624;
+    --ink:#eeede9;--ink-2:#cbc9c3;--muted:#9a958c;--on-ink:#161615;
+    --brand:#e7a24a;
+    --shadow:0 1px 2px #00000040,0 10px 28px -18px #00000099;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#161615;--paper-2:#1e1e1c;--field:#1a1a19;--fill:#2b2a28;
+  --line:#34332f;--rule:#2a2927;--dot:#262624;
+  --ink:#eeede9;--ink-2:#cbc9c3;--muted:#9a958c;--on-ink:#161615;
+  --brand:#e7a24a;
+  --shadow:0 1px 2px #00000040,0 10px 28px -18px #00000099;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background-color:var(--paper);background-image:radial-gradient(var(--dot) 1px,transparent 1.3px);background-size:24px 24px;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;display:flex;flex-direction:column;min-height:100vh}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:inherit;font-size:inherit}
+a{color:inherit}
+main{flex:1}
+::selection{background:var(--ink);color:var(--on-ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 16px}
+.narrow{max-width:56rem}
+@media (min-width:640px){.wrap{padding:0 24px}}
+
+.display{font-family:var(--sans);font-weight:700;letter-spacing:-.03em}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.h2{font-size:1.5rem;line-height:1.15;color:var(--ink)}
+@media (min-width:640px){.h2{font-size:2rem}}
+.lede{color:var(--ink-2);margin-top:.6rem;max-width:42rem;font-size:1.0625rem}
+.ink2{color:var(--ink-2)}
+.label,.eyebrow,.kicker{font-family:var(--mono);font-size:.75rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.prose p{color:var(--ink-2);font-size:1.0625rem;line-height:1.65}
+.prose p+p{margin-top:1rem}
+.prose strong{color:var(--ink);font-weight:600}
+
+.btn-primary,.btn-hero{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;text-decoration:none;transition:background .15s,transform .15s;white-space:nowrap;border:0;cursor:pointer;font:inherit;font-weight:500;padding:.5rem 1rem}
+.btn-hero{background:var(--ink);color:var(--on-ink)}
+.btn-hero:hover{background:var(--ink-2)}
+.btn-primary{background:var(--fill);color:var(--ink)}
+.btn-primary:hover{background:var(--line)}
+.btn-primary:active,.btn-hero:active{transform:translateY(1px)}
+.ulink{font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--muted);text-underline-offset:4px}
+.ulink:hover{text-decoration-color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;font-size:.9375rem;margin-top:1.25rem}
+
+.card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.callout{border-left:3px solid var(--ink);padding-left:1.1rem}
+.band{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sec{padding-top:4rem;padding-bottom:4rem}
+.sec-sm{padding-top:3.5rem;padding-bottom:3.5rem}
+
+.topstrip{display:flex;justify-content:space-between;gap:1rem;padding-top:.6rem;padding-bottom:.6rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.topstrip span:last-child{text-align:right}
+@media (max-width:560px){.topstrip span:last-child{display:none}}
+.site-header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.site-header .inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.brand{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--ink)}
+.brand svg{width:20px;height:20px;flex:none}
+.wordmark{font-weight:700;letter-spacing:-.03em;font-size:1.125rem;line-height:1}
+.wordmark-sub{font-family:var(--mono);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-left:.5rem}
+.site-header nav{display:none;align-items:center;gap:.25rem}
+.site-header nav a{font-size:.9375rem;color:var(--ink-2);text-decoration:none;padding:.35rem .75rem;border-radius:999px;transition:background .15s,color .15s}
+.site-header nav a:hover{background:var(--fill);color:var(--ink)}
+.site-header .btn-hero{font-size:.875rem;padding:.4rem .9rem}
+@media (min-width:860px){.site-header nav{display:flex}}
+.v-stroke{fill:var(--ink)}
+.v-slice{fill:var(--brand)}
+
+.hero{padding:3.5rem 0 1rem}
+@media (min-width:640px){.hero{padding-top:5rem}}
+.hero-copy{max-width:50rem}
+.hero .eyebrow{margin-bottom:.9rem}
+.hero h1{font-size:2.5rem;line-height:1.02;letter-spacing:-.04em;color:var(--ink)}
+@media (min-width:640px){.hero h1{font-size:4rem}}
+.hero .sub{max-width:40rem;margin-top:1.25rem;font-size:1.1875rem;line-height:1.55;color:var(--ink-2)}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.facts span{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--fill);border-radius:999px;padding:.3rem .75rem}
+.signup{max-width:36rem;margin-top:2rem}
+.signup form{display:flex;align-items:center;gap:.5rem;border:1px solid var(--line);background:var(--paper-2);border-radius:12px;padding:.4rem;box-shadow:var(--shadow)}
+.signup form:focus-within{border-color:var(--ink)}
+.signup input{flex:1;min-width:0;background:transparent;border:0;outline:none;padding:.5rem .25rem .5rem .6rem;font:inherit;font-size:1rem;color:var(--ink)}
+.signup input::placeholder{color:var(--muted)}
+.signup .note{margin-top:.75rem;font-size:.875rem;color:var(--muted)}
+.signup .note.ok{color:var(--ink)}
+
+.grid{display:grid;gap:1rem}
+.mt8{margin-top:2rem}
+.mt6{margin-top:1rem}
+@media (min-width:768px){
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* six-week timeline: a vertical rail on small screens, a left-to-right rail from 1000px.
+   Dots are the live Wednesday sessions, the dashed line is your own time in between. */
+.tl-card{padding:1.5rem 1.25rem 1.25rem}
+@media (min-width:640px){.tl-card{padding:2rem 1.75rem 1.5rem}}
+.tl{list-style:none;margin:0;padding:0}
+.tl-wk{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:.75rem}
+.tl-when{grid-column:2;grid-row:1;display:flex;align-items:baseline;gap:.6rem}
+.tl-date{font-size:.9375rem;font-weight:600;color:var(--ink)}
+.tl-n{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tl-rail{grid-column:1;grid-row:1/3;position:relative}
+.tl-rail::before{content:"";position:absolute;left:50%;top:.7rem;bottom:-.7rem;border-left:2px dashed var(--muted);transform:translateX(-1px)}
+.tl-wk:last-child .tl-rail::before{display:none}
+.tl-rail::after{content:"";position:absolute;left:50%;top:.7rem;width:14px;height:14px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px var(--paper-2);transform:translate(-50%,-50%)}
+.tl-wk.demo .tl-rail::after{background:var(--brand);width:18px;height:18px}
+.tl-body{grid-column:2;grid-row:2;padding-bottom:1.75rem}
+.tl-wk:last-child .tl-body{padding-bottom:0}
+.tl-body h3{font-size:1.125rem;line-height:1.25;color:var(--ink);margin-top:.3rem}
+.tl-body p{margin-top:.45rem;font-size:.9375rem;line-height:1.55;color:var(--ink-2)}
+.tl-body .tl-out{margin-top:.7rem;font-size:.875rem;font-weight:600;line-height:1.35;color:var(--ink)}
+.tl-out span{display:block;font-family:var(--mono);font-size:.625rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.tl-key{display:flex;flex-wrap:wrap;gap:.6rem 1.75rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.875rem;color:var(--ink-2)}
+.tl-key span{display:inline-flex;align-items:center;gap:.55rem}
+.tl-key i{flex:none;display:block}
+.tl-key .k-dot{width:12px;height:12px;border-radius:50%;background:var(--ink)}
+.tl-key .k-dash{width:26px;border-top:2px dashed var(--muted)}
+.tl-key .k-demo{width:14px;height:14px;border-radius:50%;background:var(--brand)}
+@media (min-width:1000px){
+  .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tl-wk{display:block}
+  .tl-when{flex-direction:column;align-items:flex-start;gap:0}
+  .tl-date{font-size:1.0625rem}
+  .tl-rail{height:20px;margin:.7rem 0 .9rem}
+  .tl-rail::before{left:7px;right:-7px;top:50%;bottom:auto;border-left:0;border-top:2px dashed var(--muted);transform:translateY(-1px)}
+  .tl-rail::after{left:7px;top:50%}
+  .tl-wk.demo .tl-rail::after{left:9px}
+  .tl-body{padding:0 1.1rem 0 0}
+  .tl-wk:last-child .tl-body{padding-right:0}
+  .tl-body h3{font-size:1.0625rem;margin-top:0}
+  .tl-body p{font-size:.875rem}
+}
+
+.split-note{border-radius:10px;background:var(--field);padding:1.1rem 1.25rem;border:1px solid var(--line)}
+.split-note.good{border-color:var(--ink)}
+.split-note .t{font-size:.875rem;font-weight:600;color:var(--muted)}
+.split-note.good .t{color:var(--ink)}
+.split-note p:last-child{margin-top:.25rem;font-size:.9375rem;color:var(--ink-2)}
+
+.two{display:grid;gap:2rem;align-items:start}
+@media (min-width:768px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kicker{display:block;margin-bottom:.6rem}
+
+.nlist{display:flex;flex-direction:column;gap:1.1rem}
+.nlist .item{display:flex;gap:1rem}
+.nlist .n{font-size:.75rem;color:var(--muted);padding-top:.2rem}
+.nlist strong{display:block;font-weight:600;color:var(--ink)}
+.nlist span.d{display:block;font-size:.9375rem;color:var(--ink-2)}
+
+.room{padding:1.75rem}
+.room blockquote{margin:0;font-weight:600;font-size:1.375rem;line-height:1.3;letter-spacing:-.02em;color:var(--ink)}
+.room p{margin-top:1rem;font-size:.9375rem;line-height:1.6;color:var(--ink-2)}
+
+.price{padding:clamp(20px,3.5vw,36px)}
+.price .amt{font-size:3rem;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.price .amt small{font-family:var(--mono);font-size:.75rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-left:.75rem;vertical-align:middle}
+.price .btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+
+.faq{margin-top:2rem;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:1rem 0}
+.faq summary{cursor:pointer;font-weight:600;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--muted)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin-top:.6rem;color:var(--ink-2);font-size:.9375rem;line-height:1.6;max-width:44rem}
+
+.cta{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:1.5rem;padding:2rem}
+@media (min-width:640px){.cta{flex-direction:row;align-items:center}}
+.cta .btns{display:flex;flex-wrap:wrap;gap:.6rem;flex-shrink:0}
+
+footer{margin-top:5rem;border-top:1px solid var(--rule)}
+.foot{display:grid;gap:2.5rem;padding:3rem 0 0}
+@media (min-width:640px){.foot{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.foot{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.foot h4{margin:0;font-family:var(--mono);font-weight:400;font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.foot ul{list-style:none;margin:.75rem 0 0;padding:0;display:grid;gap:.5rem}
+.foot ul a{font-size:.9375rem;color:var(--ink-2);text-decoration:none}
+.foot ul a:hover{color:var(--ink)}
+.foot .about{max-width:20rem}
+.foot .about p{margin-top:.75rem;font-size:.9375rem;color:var(--muted)}
+.legal{display:flex;flex-direction:column;justify-content:space-between;gap:.75rem;margin-top:2.5rem;padding:1.25rem 0 2.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (min-width:640px){.legal{flex-direction:row}}
+@media (max-width:420px){.signup .btn-hero{padding:.5rem .8rem}}
+@media print{body{background-image:none}nav,.signup{display:none!important}}
+.hero .direct{font-family:var(--sans);font-weight:700;letter-spacing:-.02em;font-size:1.375rem;line-height:1.25;color:var(--brand);margin-top:.6rem}
+@media (min-width:640px){.hero .direct{font-size:1.75rem}}
+@media (min-width:1000px){.tl.tl4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+<script>
+// PostHog (TableauOps project), cookieless: memory persistence, so no cookies
+// and no consent bar. ?internal=1 marks this browser internal for good, ?internal=0 undoes it.
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+(function(){
+  var out=false;
+  try{var q=new URLSearchParams(location.search).get('internal');
+    if(q==='1')localStorage.setItem('_ph_optout','1');
+    if(q==='0')localStorage.removeItem('_ph_optout');
+    out=localStorage.getItem('_ph_optout')==='1';}catch(e){}
+  posthog.init('phc_wHewtkMaAvVUmLSWzJ6MTyrFWmGsfRfmD6TfSCgTNmkw',{api_host:'https://us.i.posthog.com',persistence:'memory',person_profiles:'identified_only',capture_pageview:true,capture_pageleave:true,opt_out_capturing_by_default:out});
+  posthog.register({site:'directedanalysis.com'});
+})();
+</script>
+</head>
+<body id="top">
+
+<div class="wrap"><div class="topstrip"><span>Learn Tableau Studio and Tableau Data Apps · cohort</span><span>One hour a week · small group · live</span></div></div>
+<header class="site-header">
+  <div class="wrap"><div class="inner">
+    <a class="brand" href="/" aria-label="Directed Analysis home">
+      <svg viewBox="150 190 724 644" aria-hidden="true">
+        <polygon class="v-stroke" points="176,218 362,218 590,806 404,806"/>
+        <polygon class="v-stroke" points="662,218 848,218 620,806 434,806"/>
+        <polygon class="v-slice" points="662,218 848,218 796,352 610,352"/>
+      </svg>
+      <span><span class="wordmark">Directed</span><span class="wordmark-sub">Analysis</span></span>
+    </a>
+    <nav aria-label="Cohort">
+      <a href="#weeks">The four weeks</a>
+      <a href="#how">How it runs</a>
+      <a href="#need">What you need</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <!-- JOIN_URL: swap for the payment link when enrollment opens -->
+    <a class="btn-hero" href="#join">Join the list</a>
+  </div></div>
+</header>
+
+<main>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Live cohort · for Tableau developers and analysts</p>
+      <h1 class="display">Learn Tableau Studio and Tableau Data Apps.</h1>
+      <p class="direct">One hour a week. Something working at the end of every one.</p>
+      <p class="sub">Four weeks, built for people with no spare time. You build real work in Tableau Studio and ship your first Tableau Data App to your own site. No lectures you could read. Live time is for building and fixing.</p>
+      <div class="facts" aria-label="At a glance">
+        <span>4 live sessions</span><span>60 minutes each</span><span>Under 2 hours a week between</span><span>Small group</span>
+      </div>
+    </div>
+    <div class="signup" id="join">
+      <!-- JOIN_URL: when enrollment opens, replace this form with a button to the payment link -->
+      <form id="join-form" novalidate>
+        <label for="email" class="sr-only">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button class="btn-hero" type="submit">Join the list</button>
+      </form>
+      <p class="note" id="join-note" aria-live="polite">Dates, price and the link to enroll go to the list first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- the why -->
+<section class="sec-sm">
+  <div class="wrap narrow">
+    <div class="callout prose">
+      <p>Tableau Studio and Tableau Data Apps change how you build. Most people will learn them the slow way: a demo here, a doc page there, an evening lost to setup.</p>
+      <p>This is the short way. Four hours live, a couple of hours between, and you come out with work running on your own site.</p>
+      <p><strong>Every minute has to earn its place. That is the whole design.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- four weeks -->
+<section class="sec" id="weeks">
+  <div class="wrap">
+    <h2 class="display h2">Four weeks, two things shipped</h2>
+    <p class="lede">Each session is one hour. I build it live first, then you build yours with help in the room. You leave every session with something that works.</p>
+    <div class="card tl-card mt8">
+      <ol class="tl tl4" aria-label="The four weeks">
+        <li class="tl-wk">
+          <p class="tl-when"><span class="num tl-date">Week 01</span></p>
+          <div class="tl-rail" aria-hidden="true"></div>
+          <div class="tl-body">
+            <h3 class="display">Build with Studio</h3>
+            <p>Ask Studio for what you want, read what it built, and check every number before anyone else sees it.</p>
+            <p class="tl-out"><span>You leave with</span>A working dashboard, published</p>
+          </div>
+        </li>
+        <li class="tl-wk">
+          <p class="tl-when"><span class="num tl-date">Week 02</span></p>
+          <div class="tl-rail" aria-hidden="true"></div>
+          <div class="tl-body">
+            <h3 class="display">Make it right</h3>
+            <p>Fix what Studio got wrong: the chart, the field, the layout. Edit in place instead of starting over, until people can read it in ten seconds.</p>
+            <p class="tl-out"><span>You leave with</span>A dashboard you would send to your boss</p>
+          </div>
+        </li>
+        <li class="tl-wk">
+          <p class="tl-when"><span class="num tl-date">Week 03</span></p>
+          <div class="tl-rail" aria-hidden="true"></div>
+          <div class="tl-body">
+            <h3 class="display">Your first Data App</h3>
+            <p>What a Data App can do that a dashboard cannot. Start one, connect it to a published data source, shape the view, and publish it.</p>
+            <p class="tl-out"><span>You leave with</span>A Data App live on your site</p>
+          </div>
+        </li>
+        <li class="tl-wk demo">
+          <p class="tl-when"><span class="num tl-date">Week 04</span></p>
+          <div class="tl-rail" aria-hidden="true"></div>
+          <div class="tl-body">
+            <h3 class="display">Ship it</h3>
+            <p>Everyone shows their dashboard and their app. Then how to hand it over so people actually use it, and what to build next on your own.</p>
+            <p class="tl-out"><span>You leave with</span>Both pieces, in use at work</p>
+          </div>
+        </li>
+      </ol>
+      <div class="tl-key">
+        <span><i class="k-dot"></i>Every week: a 60 minute live session, building on your own site</span>
+        <span><i class="k-dash"></i>In between: under two hours, and every assignment says how long it takes</span>
+        <span><i class="k-demo"></i>Week 4: you show what you built</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- how it runs -->
+<section class="band" id="how">
+  <div class="wrap sec">
+    <h2 class="display h2">How it runs</h2>
+    <p class="lede">Built around your time, not mine.</p>
+    <div class="two mt8">
+      <div class="nlist">
+        <div class="item">
+          <span class="num n">01</span>
+          <div><strong>Four live sessions, 60 minutes each</strong><span class="d">One a week. The day and time go to the list before enrollment opens.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">02</span>
+          <div><strong>Setup happens before week 1, not in it</strong><span class="d">A 20 minute setup check ahead of time. If something is blocked, I fix it with you one on one, so nobody loses live time to setup.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">03</span>
+          <div><strong>Under two hours a week between sessions</strong><span class="d">Every assignment says how long it takes. If one runs long, I cut it for the next group.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">04</span>
+          <div><strong>Recordings and the finished files</strong><span class="d">After every session, so you can go back to any step.</span></div>
+        </div>
+        <div class="item">
+          <span class="num n">05</span>
+          <div><strong>A small group</strong><span class="d">Small enough that I can look at your screen when you get stuck.</span></div>
+        </div>
+      </div>
+      <figure class="card room" style="margin:0">
+        <blockquote>You build on your own site, with your own data, from the first session.</blockquote>
+        <p>Watching someone else build teaches you less than building it yourself, badly, with help right there.</p>
+        <p>So every session is mostly building. I show it once, then you do it, and I help in the room when it breaks.</p>
+        <p>If you do not have data you can use, I will give you a sample so you can still build everything.</p>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- what you need + who -->
+<section class="sec" id="need">
+  <div class="wrap">
+    <h2 class="display h2">What you need</h2>
+    <p class="lede">I check all of this with you before week 1.</p>
+    <div class="grid g3 mt8">
+      <div class="split-note good">
+        <p class="t">A Tableau site that has Studio</p>
+        <p>Tableau Studio needs Tableau+, Cloud+ or Server+. A trial works too.</p>
+      </div>
+      <div class="split-note good">
+        <p class="t">Permission to publish</p>
+        <p>To at least one project on that site, so your work goes live, not just onto your laptop.</p>
+      </div>
+      <div class="split-note good">
+        <p class="t">Data Apps turned on</p>
+        <p>A site setting. If yours is off, I tell you exactly what to ask your admin for.</p>
+      </div>
+    </div>
+    <h2 class="display h2" style="margin-top:3.5rem">Who it is for</h2>
+    <div class="grid g2 mt8">
+      <div class="split-note good">
+        <p class="t">A good fit</p>
+        <p>You already build dashboards in Tableau. You want to use Studio and Data Apps at work, not just watch a demo. You have very little spare time and want every hour to count.</p>
+      </div>
+      <div class="split-note">
+        <p class="t">Not a fit</p>
+        <p>You have never built in Tableau, or your site cannot get Studio yet. Start with the basics, or a trial, and join the next one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section class="band" id="faq">
+  <div class="wrap narrow sec">
+    <h2 class="display h2">Questions</h2>
+    <div class="faq">
+      <details>
+        <summary>When is it, and what does it cost?</summary>
+        <p>The day, the time and the price go to the list first, before anyone else sees them. Join the list and you will hear before enrollment opens.</p>
+      </details>
+      <details>
+        <summary>Do I need Tableau+?</summary>
+        <p>You need a site with Tableau Studio, which means Tableau+, Cloud+ or Server+, or a trial. I help you check before week 1.</p>
+      </details>
+      <details>
+        <summary>Do I need to code?</summary>
+        <p>No. Studio does the building from what you ask for. Data Apps go further than a dashboard, and I walk you through every step of yours.</p>
+      </details>
+      <details>
+        <summary>Do I bring my own data?</summary>
+        <p>If you have data you can use, yes. If not, I give you a sample so you can build everything anyway.</p>
+      </details>
+      <details>
+        <summary>What if I miss a session?</summary>
+        <p>Every session is recorded and you get the finished files, so you can catch up on your own time and bring your questions to the next one.</p>
+      </details>
+      <details>
+        <summary>How is this different from Chase the Valuable Part?</summary>
+        <p>They are separate. <a class="ulink" href="/cohort/">Chase the Valuable Part</a> teaches the method for any tool. This one teaches two Tableau tools, fast.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- cta -->
+<section class="sec">
+  <div class="wrap">
+    <div class="card cta">
+      <div>
+        <h2 class="display h2" style="font-size:1.5rem">Four hours live. Two things shipped.</h2>
+        <p class="ink2" style="margin-top:.5rem;max-width:32rem">A Studio dashboard and a Data App, running on your own site. Dates, price and enrollment go to the list first.</p>
+      </div>
+      <div class="btns">
+        <!-- JOIN_URL -->
+        <a class="btn-hero" href="#join">Join the list</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a class="brand" href="/">
+          <svg viewBox="150 190 724 644" aria-hidden="true">
+            <polygon class="v-stroke" points="176,218 362,218 590,806 404,806"/>
+            <polygon class="v-stroke" points="662,218 848,218 620,806 434,806"/>
+            <polygon class="v-slice" points="662,218 848,218 796,352 610,352"/>
+          </svg>
+          <span><span class="wordmark">Directed</span><span class="wordmark-sub">Analysis</span></span>
+        </a>
+        <p>Weekly essays for the people who explain the numbers.</p>
+      </div>
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="https://directedanalysis.substack.com/p/the-homecoming" target="_blank" rel="noopener">Issue 01: The Prodigal Analyst</a></li>
+          <li><a href="https://directedanalysis.substack.com/p/the-question-under-the-request" target="_blank" rel="noopener">Issue 02: The Question Under the Request</a></li>
+          <li><a href="https://directedanalysis.substack.com" target="_blank" rel="noopener">Archive on Substack</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Cohorts</h4>
+        <ul>
+          <li><a href="/studio/">Learn Tableau Studio and Tableau Data Apps</a></li>
+          <li><a href="/cohort/">Chase the Valuable Part</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Eric Summers</h4>
+        <ul>
+          <li><a href="https://ericsummers.io" target="_blank" rel="noopener">ericsummers.io</a></li>
+          <li><a href="https://www.linkedin.com/in/ericsummers/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://tableauops.com" target="_blank" rel="noopener">TableauOps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© <span id="yr">2026</span> Eric Summers. Directed Analysis, a Directed Building property.</p>
+      <p class="num">Live, small, and built around your time.</p>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+// Cohort list: posts to the TableauOps app with this page's path, which picks
+// the cohort (studio-data-apps). The app keeps the roster and sends the
+// "you're on the list" email from mail.directedanalysis.com.
+(function(){
+  var f=document.getElementById('join-form'),n=document.getElementById('join-note');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=f.querySelector('input[type=email]'),b=f.querySelector('button'),email=i.value.trim();
+    if(!i.checkValidity()||!email){n.className='note';n.textContent='That email doesn’t look right. Try again?';i.focus();return;}
+    b.disabled=true;b.textContent='Joining…';
+    var src=(new URLSearchParams(location.search).get('ref')||'studio-page').slice(0,64);
+    fetch('https://www.tableauops.com/api/cohort',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,source:src,page:'/studio',website:(f.querySelector('[name=website]')||{}).value||''})})
+    .then(function(r){if(!r.ok)throw new Error(r.status);
+      try{var own=/@vizyourdata\.com$|^(eric@tableauops\.com|esumm1@gmail\.com|eric\.summers@abouthealthcare\.com)$/i.test(email);
+        if(own){posthog.opt_out_capturing();localStorage.setItem('_ph_optout','1');}
+        else posthog.capture('cohort_list_joined',{source:src,cohort:'studio-data-apps'});}catch(e){}
+      f.style.display='none';n.className='note ok';
+      n.textContent='You’re on the list. Dates, price and the link to enroll will come to '+email+' first.';})
+    .catch(function(){b.disabled=false;b.textContent='Join the list';n.className='note';
+      n.textContent='Something went wrong on our end. Try again in a minute.';});
+  });
+})();
+</script>
+</body>
+</html>
